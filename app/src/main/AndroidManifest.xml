@@ -14,12 +14,16 @@
             android:exported="true" />
         <activity
             android:name=".Themes"
+            android:label="Themes"
+            android:parentActivityName=".MainActivity"
             android:exported="true" />
         <activity
             android:name=".LogCry"
             android:exported="true" />
         <activity
             android:name=".Profile"
+            android:label="Profile"
+            android:parentActivityName=".MainActivity"
             android:exported="true" />
         <activity
             android:name=".LogInScreen"

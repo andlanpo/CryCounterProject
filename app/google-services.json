@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1003072729484",
+    "project_id": "crycountersignup",
+    "storage_bucket": "crycountersignup.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1003072729484:android:bc0e602873491b6533e6a9",
+        "android_client_info": {
+          "package_name": "com.example.crycounter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1003072729484-eo75hrhfpqdot34lqqn4fhrb771v878f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_cx2o24Q_NvpMk0Fq5kOT7YGcgKtljJ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1003072729484-eo75hrhfpqdot34lqqn4fhrb771v878f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
