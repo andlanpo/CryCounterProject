@@ -10,21 +10,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CryCounter">
         <activity
+            android:name=".SignUpProfile"
+            android:exported="true" />
+        <activity
             android:name=".Leaderboard"
             android:exported="true" />
         <activity
             android:name=".Themes"
+            android:exported="true"
             android:label="Themes"
-            android:parentActivityName=".MainActivity"
-            android:exported="true" />
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".LogCry"
             android:exported="true" />
         <activity
             android:name=".Profile"
+            android:exported="true"
             android:label="Profile"
-            android:parentActivityName=".MainActivity"
-            android:exported="true" />
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".LogInScreen"
             android:exported="true" />

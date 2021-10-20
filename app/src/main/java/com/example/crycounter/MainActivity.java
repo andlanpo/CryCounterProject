@@ -42,6 +42,10 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent2 = new Intent(this, Themes.class);
                 this.startActivity(intent2);
                 return true;
+            case R.id.signUp:
+                Intent intent3 = new Intent(this, SignUpPage.class);
+                this.startActivity(intent3);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,15 +45,22 @@ public class SignUpPage extends AppCompatActivity {
             // Take any action needed here when screen loads and a user is logged in
         }
         else {
-            authStatusTV.setText("onStart reloaded and user is null");
+            authStatusTV.setText("You are not currently signed up");
             // Take any action needed here when screen loads and a user is NOT logged in
         }
     }
 
+    public void handleAuthChange(View v) {
+        String email = emailET.getText().toString();
+        String password = passwordET.getText().toString();
+        Log.i("Denna",  email + " " + password);
+
+       signUp(email, password);
+    }
     public void signUp(String email, String password) {
 
         // If the email and password passed in are not null, then try to create a User
-        if (email != null && password != null) {
+        // if (email != null && password != null) {
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -71,6 +79,6 @@ public class SignUpPage extends AppCompatActivity {
                             }
                         }
                     });
-        }
+       // }
     }
 }
