@@ -12,4 +12,25 @@
     <color name = "melodrama_button">#ffac58</color>
     <color name = "melodrama_background">#130665</color>
     <color name = "melodrama_navBar">#202ef0</color>
+
+    <color name="punisher_text">#161723</color>
+    <color name = "punisher_button">#4a111e</color>
+    <color name = "punisher_background">#091e33</color>
+    <color name = "punisher_navBar">#900e0e</color>
+
+    <color name="sunset_text">#e5b870</color>
+    <color name = "sunset_button">#e06b6b</color>
+    <color name = "sunset_background">#888fbc</color>
+    <color name = "sunset_navBar">#81c3ea</color>
+
+    <color name="evermore_text">#f4f4f4</color>
+    <color name = "evermore_button">#c27251</color>
+    <color name = "evermore_background">#67230e</color>
+    <color name = "evermore_navBar">#787a6c</color>
+
+
+
+
+
+
 </resources>
