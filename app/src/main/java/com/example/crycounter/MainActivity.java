@@ -5,10 +5,15 @@ import androidx.appcompat.view.menu.MenuBuilder;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,6 +21,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.melodrama_navBar)));
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+
+        window.setStatusBarColor(getResources().getColor(R.color.melodrama_navBar));
+
+        Button statistics = findViewById(R.id.statistics);
+        statistics.setBackgroundColor((getResources().getColor(R.color.melodrama_button)));
+
+        Button leaderboard = findViewById(R.id.leaderboard);
+        leaderboard.setBackgroundColor((getResources().getColor(R.color.melodrama_button)));
+
+        Button button = findViewById(R.id.button5);
+        button.setBackgroundColor((getResources().getColor(R.color.melodrama_button)));
     }
     @SuppressLint("RestrictedApi")
     @Override
@@ -28,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
             m.setOptionalIconsVisible(true);
         }
         return true;
+        
+        
     }
 
     @Override
