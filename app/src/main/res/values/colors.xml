@@ -7,4 +7,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="melodrama_text">#89bafd</color>
+    <color name = "melodrama_button">#ffac58</color>
+    <color name = "melodrama_background">#130665</color>
+    <color name = "melodrama_navBar">#202ef0</color>
 </resources>
