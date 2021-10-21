@@ -54,6 +54,11 @@ public class MainActivity extends AppCompatActivity {
         
     }
 
+    public void logCry(View v){
+        Intent intent = new Intent(MainActivity.this, LogCry.class);
+        startActivity(intent);
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
