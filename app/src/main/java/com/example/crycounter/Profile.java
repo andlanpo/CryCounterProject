@@ -16,6 +16,7 @@ public class Profile implements Parcelable {
     private int imageResourceID;
     private boolean privacy;
 
+
     public Profile(boolean a, String f, String l, int i, boolean p){
         moreOrLess = a;
         firstName = f;

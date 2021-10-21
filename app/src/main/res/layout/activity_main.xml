@@ -35,7 +35,7 @@
         android:layout_marginStart="158dp"
         android:layout_marginTop="208dp"
         android:layout_marginEnd="159dp"
-        android:onClick="colorChange"
+        android:onClick="logCry"
         android:text="Button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
