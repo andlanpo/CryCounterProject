@@ -71,6 +71,10 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent3 = new Intent(this, SignUpPage.class);
                 this.startActivity(intent3);
                 return true;
+            case R.id.logIn:
+                Intent intent4 = new Intent(this, LogInScreen.class);
+                this.startActivity(intent4);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
