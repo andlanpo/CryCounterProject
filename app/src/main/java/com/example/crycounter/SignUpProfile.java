@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 
 import com.google.firebase.auth.FirebaseUser;
@@ -22,10 +23,36 @@ public class SignUpProfile extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-//        EditText
-//        Profile user = new Profile()
+    public void onRadioButtonClicked(View v){
+        switch(v.getId())
+        {
+            case R.id.cryLess:
+                moreOrLess = true;
+                //
+                break;
+            case R.id.cryMore:
+                //
+                moreOrLess = false;
+                break;
+            case R.id.showCry:
+                //
+                privacy = false;
+                break;
+            case R.id.noShowCry:
+                //
+                privacy = true;
+                break;
+        }
+    }
+
+    public void saveInfo(View v){
+        EditText editFirstName = findViewById(R.id.editFirstName);
+        EditText editLastName = findViewById(R.id.editLastName);
+
+        firstName = editFirstName.getText().toString();
+        lastName = editLastName.getText().toString();
+
+        Profile user = new Profile(moreOrLess, firstName, lastName, privacy);
+
     }
 }

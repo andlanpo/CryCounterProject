@@ -13,15 +13,17 @@ public class Profile implements Parcelable {
     private boolean moreOrLess;
     private String firstName;
     private String lastName;
-    private int imageResourceID;
+//    private int imageResourceID;
     private boolean privacy;
+    private String[] locations;
+    private String[] stressors;
 
 
-    public Profile(boolean a, String f, String l, int i, boolean p){
+    public Profile(boolean a, String f, String l, boolean p){
         moreOrLess = a;
         firstName = f;
         lastName = l;
-        imageResourceID = i;
+        //imageResourceID = i;
         privacy = p;
     }
 
@@ -30,7 +32,7 @@ public class Profile implements Parcelable {
         moreOrLess = parcel.readBoolean();
         firstName = parcel.readString();
         lastName = parcel.readString();
-        imageResourceID = parcel.readInt();
+        //imageResourceID = parcel.readInt();
         privacy = parcel.readBoolean();
     }
 
@@ -40,7 +42,7 @@ public class Profile implements Parcelable {
         dest.writeBoolean(moreOrLess);
         dest.writeBoolean(privacy);
         dest.writeString(lastName);
-        dest.writeInt(imageResourceID);
+        //dest.writeInt(imageResourceID);
     }
 
     public static final Parcelable.Creator<Profile> CREATOR = new
@@ -75,9 +77,9 @@ public class Profile implements Parcelable {
         this.lastName = lastName;
     }
 
-    public void setImageResourceID(int imageResourceID) {
-        this.imageResourceID = imageResourceID;
-    }
+    //public void setImageResourceID(int imageResourceID) {
+        //this.imageResourceID = imageResourceID;
+    //}
 
     public void setPrivacy(boolean privacy) {
         this.privacy = privacy;
@@ -87,9 +89,9 @@ public class Profile implements Parcelable {
         return privacy;
     }
 
-    public int getImageResourceID() {
-        return imageResourceID;
-    }
+    //public int getImageResourceID() {
+        //return imageResourceID;
+    //}
 
     public String getLastName() {
         return lastName;
