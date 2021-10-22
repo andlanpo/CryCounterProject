@@ -12,6 +12,8 @@ import android.widget.CalendarView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.List;
+
 public class LogCry extends AppCompatActivity {
 
     @Override
@@ -20,10 +22,6 @@ public class LogCry extends AppCompatActivity {
         setContentView(R.layout.activity_log_cry);
 
         LinearLayout linearLayout = findViewById(R.id.logCryLayout);
-        Button statistics = findViewById(R.id.statistics);
-        Button leaderboard = findViewById(R.id.leaderboard);
-        Button button = findViewById(R.id.button5);
-
         linearLayout.setBackgroundColor(getResources().getColor(R.color.punisher_background));
 
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.punisher_navBar)));
@@ -46,4 +44,9 @@ public class LogCry extends AppCompatActivity {
 
 
     }
+
+    public void fillSpinner(List<String> s){
+
+    }
+
 }
