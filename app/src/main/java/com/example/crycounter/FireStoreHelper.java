@@ -9,6 +9,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -17,7 +18,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.EventListener;
 
 public class FireStoreHelper {
     private final FirebaseFirestore db;         // ref to entire database
@@ -31,6 +31,21 @@ public class FireStoreHelper {
         db = FirebaseFirestore.getInstance();
         profileRef = db.collection("profiles");
 
+        profileRef.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                // clear out the array list so that none of the events are duplicated in the display
+                profileArrayList.clear();
+
+                // this for each loop will get each Document Snapshot from the query, and one at a time,
+                // convert them to an object of the Event class and then add them to the array list
+
+                for (QueryDocumentSnapshot doc: value) {
+                    Profile profile = doc.toObject(Profile.class);
+                    profileArrayList.add(profile);
+                }
+            }
+        });
     }
 
     /* You can add custom objects with Firestore as long as there is a public constructor
