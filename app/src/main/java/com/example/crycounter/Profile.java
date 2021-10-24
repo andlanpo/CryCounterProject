@@ -15,6 +15,7 @@ public class Profile implements Parcelable, Comparable<Profile> {
     private boolean privacy;
     private String[] locations;
     private String[] stressors;
+    private Cry[] cries;
 
     public static final Parcelable.Creator<Profile> CREATOR = new Parcelable.Creator<Profile>() {
 

@@ -5,6 +5,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -42,11 +43,20 @@ public class LogCry extends AppCompatActivity {
         whenCry.setTextColor(getResources().getColor(R.color.punisher_navBar));
 
 
-
     }
 
-    public void fillSpinner(List<String> s){
+    //public void fillSpinner(List<String> s){
+    //would be something like db.collection(Profile) and then get the stressors
+    // }
 
-    }
+    //public void submitButton(View v){
+    //int date = findViewById(R.id.calendar); something like this to extract the date
+    //String stressor = findViewById(R.id.stressor); extract the stressor
+    // String location = findViewById(R.id.location);
+    // int time = findViewById(R.id.time);
+    // Cry newCry = new Cry(date, stressor, location, time);
+    // db.addEvent(newCry) // add cry to profile
+
+    //  }
 
 }
