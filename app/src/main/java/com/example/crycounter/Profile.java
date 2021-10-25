@@ -18,6 +18,7 @@ public class Profile implements Parcelable, Comparable<Profile> {
     private ArrayList<String> locations;
     private ArrayList<String> stressors;
     private ArrayList<Cry> cries;
+    private String key;
 
     public static final Parcelable.Creator<Profile> CREATOR = new Parcelable.Creator<Profile>() {
 
@@ -42,6 +43,7 @@ public class Profile implements Parcelable, Comparable<Profile> {
         cries = parcel.readArrayList(null);
         privacy = parcel.readBoolean();
         lastName = parcel.readString();
+        key = parcel.readString();
     }
 
 
@@ -54,6 +56,29 @@ public class Profile implements Parcelable, Comparable<Profile> {
         locations = lo;
         privacy = p;
         cries = new ArrayList<Cry>();
+        this.key = "no key yet";
+    }
+
+    public Profile() {}
+
+    public Profile(boolean a, String f, String l, boolean p, ArrayList<String> s, ArrayList<String> lo, String key ){
+        moreOrLess = a;
+        firstName = f;
+        lastName = l;
+        //imageResourceID = i;
+        stressors = s;
+        locations = lo;
+        privacy = p;
+        cries = new ArrayList<Cry>();
+        this.key = key;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
@@ -65,6 +90,7 @@ public class Profile implements Parcelable, Comparable<Profile> {
         dest.writeList(stressors);
         dest.writeList(locations);
         dest.writeList(cries);
+        dest.writeString(key);
 
 
         //dest.writeInt(imageResourceID);

@@ -97,10 +97,10 @@ public class FireStoreHelper {
 
     // set will override an existing Event object with this key
     // if one isn't available, then it will add the object.
-    //public void updateProfile(Profile profile) {
-      //  db.collection("profiles").document(profile.getKey())
-        //        .set(profile);
-   // }
+    public void updateProfile(Profile profile) {
+        db.collection("profiles").document(profile.getKey())
+                .set(profile);
+    }
 
     public ArrayList<Profile> getProfileArrayList() {
         return profileArrayList;
