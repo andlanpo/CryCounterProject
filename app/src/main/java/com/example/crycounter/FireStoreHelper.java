@@ -21,7 +21,8 @@ import java.util.Collections;
 
 public class FireStoreHelper {
     private final FirebaseFirestore db;         // ref to entire database
-    private CollectionReference profileRef;      // ref to profile collection only
+    private CollectionReference profileRef;  // ref to profile collection only
+    private CollectionReference cryRef; // ref to cry collection only
 
     // arraylist of all profiles in database
     private ArrayList<Profile> profileArrayList= new ArrayList<>();

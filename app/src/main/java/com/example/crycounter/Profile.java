@@ -6,6 +6,8 @@ import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+
 public class Profile implements Parcelable, Comparable<Profile> {
 
     private boolean moreOrLess;
@@ -13,9 +15,9 @@ public class Profile implements Parcelable, Comparable<Profile> {
     private String lastName;
 //    private int imageResourceID;
     private boolean privacy;
-    private String[] locations;
-    private String[] stressors;
-    private Cry[] cries;
+    private ArrayList<String> locations;
+    private ArrayList<String> stressors;
+    private ArrayList<Cry> cries;
 
     public static final Parcelable.Creator<Profile> CREATOR = new Parcelable.Creator<Profile>() {
 
@@ -35,19 +37,23 @@ public class Profile implements Parcelable, Comparable<Profile> {
     public Profile(Parcel parcel) {
         moreOrLess = parcel.readBoolean();
         firstName = parcel.readString();
-        //stressors = parcel.readStringArray();
-        //locations = parcel.readStringArray();
+        stressors = parcel.readArrayList(null);
+        locations = parcel.readArrayList(null);
+        cries = parcel.readArrayList(null);
         privacy = parcel.readBoolean();
         lastName = parcel.readString();
     }
 
 
-    public Profile(boolean a, String f, String l, boolean p){
+    public Profile(boolean a, String f, String l, boolean p, ArrayList<String> s, ArrayList<String> lo ){
         moreOrLess = a;
         firstName = f;
         lastName = l;
         //imageResourceID = i;
+        stressors = s;
+        locations = lo;
         privacy = p;
+        cries = new ArrayList<Cry>();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
@@ -56,6 +62,11 @@ public class Profile implements Parcelable, Comparable<Profile> {
         dest.writeBoolean(moreOrLess);
         dest.writeBoolean(privacy);
         dest.writeString(lastName);
+        dest.writeList(stressors);
+        dest.writeList(locations);
+        dest.writeList(cries);
+
+
         //dest.writeInt(imageResourceID);
     }
 
@@ -104,10 +115,34 @@ public class Profile implements Parcelable, Comparable<Profile> {
         return moreOrLess;
     }
 
+    public ArrayList<String> getLocations() {
+        return locations;
+    }
+
+    public void setLocations(ArrayList<String> locations) {
+        this.locations = locations;
+    }
+
+    public ArrayList<String> getStressors() {
+        return stressors;
+    }
+
+    public void setStressors(ArrayList<String> stressors) {
+        this.stressors = stressors;
+    }
+
+    public ArrayList<Cry> getCries() {
+        return cries;
+    }
+
+    public void setCries(ArrayList<Cry> cries) {
+        this.cries = cries;
+    }
+
     @Override
     public int compareTo(Profile other) {
-        if(this.getFirstName() == other.getFirstName()){
-            if(this.getLastName() == other.getLastName()){
+        if(this.getFirstName().equals(other.getFirstName())){
+            if(this.getLastName().equals(other.getLastName())){
                 return 0;
             }
         }

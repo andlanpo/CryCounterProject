@@ -80,7 +80,7 @@ public class SignUpProfile extends AppCompatActivity {
         firstName = editFirstName.getText().toString();
         lastName = editLastName.getText().toString();
 
-        Profile user = new Profile(moreOrLess, firstName, lastName, privacy);
+        Profile user = new Profile(moreOrLess, firstName, lastName, privacy, stressors, locations);
 
     }
 }
