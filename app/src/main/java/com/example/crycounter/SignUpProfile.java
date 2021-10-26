@@ -71,8 +71,8 @@ public class SignUpProfile extends AppCompatActivity {
             locationText.setError("Field cannot be left blank.");
         }
         locations.add(location);
-        Toast.makeText(getApplicationContext(),"Added successfully",Toast.LENGTH_SHORT).show();
-        locationText.setHint("Location");
+        String text = locations.get(0);
+        Toast.makeText(getApplicationContext(),text,Toast.LENGTH_SHORT).show();
     }
 
 

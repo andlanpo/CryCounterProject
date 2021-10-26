@@ -64,7 +64,7 @@ public class FireStoreHelper {
                     @Override
                     // documentReference contains a reference to the newly created Document if done successfully
                     public void onSuccess(DocumentReference documentReference) {
-                        db.collection("events").document(documentReference.getId())
+                        db.collection("profiles").document(documentReference.getId())
                                 .update("key", documentReference.getId());  // sets the DocID key for the Event that was just added
                     }
                 })

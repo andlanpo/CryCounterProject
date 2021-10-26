@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()){
             case R.id.profile:
-                Intent intent1 = new Intent(this, Profile.class);
+                Intent intent1 = new Intent(this, SignUpProfile.class);
                 this.startActivity(intent1);
                 return true;
             case R.id.themes:
