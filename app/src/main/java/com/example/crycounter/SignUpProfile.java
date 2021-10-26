@@ -28,6 +28,7 @@ public class SignUpProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_profile);
+        dbHelper = new FireStoreHelper();
 
     }
 
@@ -72,7 +73,7 @@ public class SignUpProfile extends AppCompatActivity {
         }
         locations.add(location);
         String text = locations.get(0);
-        Toast.makeText(getApplicationContext(),text,Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),"Added successfully",Toast.LENGTH_SHORT).show();
     }
 
 
@@ -85,6 +86,7 @@ public class SignUpProfile extends AppCompatActivity {
 
         Profile user = new Profile(moreOrLess, firstName, lastName, privacy, stressors, locations);
         dbHelper.addProfile(user);
+        
 
 
     }
