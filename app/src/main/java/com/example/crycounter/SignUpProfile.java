@@ -2,9 +2,11 @@ package com.example.crycounter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -20,6 +22,7 @@ public class SignUpProfile extends AppCompatActivity {
     private boolean privacy;
     private ArrayList<String> stressors = new ArrayList<>();
     private ArrayList<String> locations = new ArrayList<>();
+    private FireStoreHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +84,21 @@ public class SignUpProfile extends AppCompatActivity {
         lastName = editLastName.getText().toString();
 
         Profile user = new Profile(moreOrLess, firstName, lastName, privacy, stressors, locations);
+        dbHelper.addProfile(user);
 
+
+    }
+    /**
+     * This method will be called to minimize the on screen keyboard in the Activity
+     * When we get the current view, it is the view that has focus, which is the keyboard
+     *
+     * Source:  https://www.youtube.com/watch?v=CW5Xekqfx3I
+     */
+    private void closeKeyboard() {
+        View view = this.getCurrentFocus();     // view will refer to the keyboard
+        if (view != null ){                     // if there is a view that has focus
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 }
