@@ -72,7 +72,6 @@ public class SignUpProfile extends AppCompatActivity {
             locationText.setError("Field cannot be left blank.");
         }
         locations.add(location);
-        String text = locations.get(0);
         Toast.makeText(getApplicationContext(),"Added successfully",Toast.LENGTH_SHORT).show();
     }
 
@@ -86,7 +85,12 @@ public class SignUpProfile extends AppCompatActivity {
 
         Profile user = new Profile(moreOrLess, firstName, lastName, privacy, stressors, locations);
         dbHelper.addProfile(user);
-        
+
+
+        Toast.makeText(getApplicationContext(),"Saved Profile",Toast.LENGTH_SHORT).show();
+        Intent intent1 = new Intent(this, MainActivity.class);
+        this.startActivity(intent1);
+
 
 
     }
