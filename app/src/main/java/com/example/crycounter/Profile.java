@@ -19,6 +19,7 @@ public class Profile implements Parcelable, Comparable<Profile> {
     private ArrayList<String> stressors;
     private ArrayList<Cry> cries;
     private String key;
+    private String UID;
 
     public static final Parcelable.Creator<Profile> CREATOR = new Parcelable.Creator<Profile>() {
 
@@ -44,6 +45,7 @@ public class Profile implements Parcelable, Comparable<Profile> {
         privacy = parcel.readBoolean();
         lastName = parcel.readString();
         key = parcel.readString();
+        UID = parcel.readString();
     }
 
 
@@ -57,11 +59,12 @@ public class Profile implements Parcelable, Comparable<Profile> {
         privacy = p;
         cries = new ArrayList<Cry>();
         this.key = "no key yet";
+        this.UID = "no UID yet";
     }
 
     public Profile() {}
 
-    public Profile(boolean a, String f, String l, boolean p, ArrayList<String> s, ArrayList<String> lo, String key ){
+    public Profile(boolean a, String f, String l, boolean p, ArrayList<String> s, ArrayList<String> lo, String key, String uid ){
         moreOrLess = a;
         firstName = f;
         lastName = l;
@@ -71,15 +74,23 @@ public class Profile implements Parcelable, Comparable<Profile> {
         privacy = p;
         cries = new ArrayList<Cry>();
         this.key = key;
+        this.UID = uid;
     }
 
-    public String getKey() {
-        return key;
+    public Profile(boolean a, String f, String l, boolean p, ArrayList<String> s, ArrayList<String> lo, String uid ){
+        moreOrLess = a;
+        firstName = f;
+        lastName = l;
+        //imageResourceID = i;
+        stressors = s;
+        locations = lo;
+        privacy = p;
+        cries = new ArrayList<Cry>();
+        this.key = "no key yet";
+        this.UID = uid;
     }
 
-    public void setKey(String key) {
-        this.key = key;
-    }
+
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
     public void writeToParcel(Parcel dest, int flags) {
@@ -91,6 +102,7 @@ public class Profile implements Parcelable, Comparable<Profile> {
         dest.writeList(locations);
         dest.writeList(cries);
         dest.writeString(key);
+        dest.writeString(UID);
 
 
         //dest.writeInt(imageResourceID);
@@ -116,6 +128,21 @@ public class Profile implements Parcelable, Comparable<Profile> {
     //public void setImageResourceID(int imageResourceID) {
         //this.imageResourceID = imageResourceID;
     //}
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public String getUID() {
+        return UID;
+    }
+
+    public void setUID(String UID) {
+        this.UID = UID;
+    }
 
     public void setPrivacy(boolean privacy) {
         this.privacy = privacy;
@@ -167,14 +194,11 @@ public class Profile implements Parcelable, Comparable<Profile> {
 
     @Override
     public int compareTo(Profile other) {
-        if(this.getFirstName().equals(other.getFirstName())){
-            if(this.getLastName().equals(other.getLastName())){
-                return 0;
+        if(this.getUID().equals(other.getUID())){
+            return 0;
             }
-        }
         else{
             return -1;
         }
-        return 0;
     }
 }
