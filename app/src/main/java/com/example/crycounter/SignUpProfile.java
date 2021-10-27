@@ -24,7 +24,6 @@ public class SignUpProfile extends AppCompatActivity {
     private ArrayList<String> stressors = new ArrayList<>();
     private ArrayList<String> locations = new ArrayList<>();
     private FireStoreHelper dbHelper;
-    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,9 +84,9 @@ public class SignUpProfile extends AppCompatActivity {
         firstName = editFirstName.getText().toString();
         lastName = editLastName.getText().toString();
 
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        String UID = currentUser.getUid();
-        Profile user = new Profile(moreOrLess, firstName, lastName, privacy, stressors, locations, UID);
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = currentUser.getUid();
+        Profile user = new Profile(moreOrLess, firstName, lastName, privacy, stressors, locations, uid);
         dbHelper.addProfile(user);
 
 

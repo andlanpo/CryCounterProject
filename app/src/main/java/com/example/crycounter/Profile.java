@@ -49,7 +49,7 @@ public class Profile implements Parcelable, Comparable<Profile> {
     }
 
 
-    public Profile(boolean a, String f, String l, boolean p, ArrayList<String> s, ArrayList<String> lo ){
+    public Profile(boolean a, String f, String l, boolean p, ArrayList<String> s, ArrayList<String> lo, String uid ){
         moreOrLess = a;
         firstName = f;
         lastName = l;
@@ -59,7 +59,7 @@ public class Profile implements Parcelable, Comparable<Profile> {
         privacy = p;
         cries = new ArrayList<Cry>();
         this.key = "no key yet";
-        this.UID = "no UID yet";
+        this.UID = uid;
     }
 
     public Profile() {}
@@ -74,19 +74,6 @@ public class Profile implements Parcelable, Comparable<Profile> {
         privacy = p;
         cries = new ArrayList<Cry>();
         this.key = key;
-        this.UID = uid;
-    }
-
-    public Profile(boolean a, String f, String l, boolean p, ArrayList<String> s, ArrayList<String> lo, String uid ){
-        moreOrLess = a;
-        firstName = f;
-        lastName = l;
-        //imageResourceID = i;
-        stressors = s;
-        locations = lo;
-        privacy = p;
-        cries = new ArrayList<Cry>();
-        this.key = "no key yet";
         this.UID = uid;
     }
 
