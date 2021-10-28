@@ -7,11 +7,14 @@ import androidx.annotation.Nullable;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -26,9 +29,11 @@ public class FireStoreHelper {
 
     // arraylist of all profiles in database
     private ArrayList<Profile> profileArrayList= new ArrayList<>();
+    FirebaseAuth mAuth;
 
 
     public FireStoreHelper() {
+        mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         profileRef = db.collection("profiles");
 
@@ -47,6 +52,9 @@ public class FireStoreHelper {
                 }
             }
         });
+    }
+    public ArrayList<Profile> getProfileArrayList() {
+        return profileArrayList;
     }
 
     /* You can add custom objects with Firestore as long as there is a public constructor
@@ -102,9 +110,18 @@ public class FireStoreHelper {
                 .set(profile);
     }
 
-    public ArrayList<Profile> getProfileArrayList() {
-        return profileArrayList;
-    }
+    //public void addCry(Cry cry){
+        //String currentUID = mAuth.getCurrentUser().getUid();
+        //String currentKey = "";
+
+        //Query query = profileRef.whereEqualTo("uid", currentUID);
+        //query.
+
+
+
+   // }
+
+
 }
 
 

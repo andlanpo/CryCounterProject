@@ -115,6 +115,10 @@ public class Profile implements Parcelable, Comparable<Profile> {
     //public void setImageResourceID(int imageResourceID) {
         //this.imageResourceID = imageResourceID;
     //}
+
+    public void cry(Cry cry){
+        cries.add(cry);
+    }
     public String getKey() {
         return key;
     }
