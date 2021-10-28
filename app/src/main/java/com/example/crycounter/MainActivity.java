@@ -85,4 +85,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void goToStats(View v){
+        Intent intent = new Intent(this, Statistics.class);
+        startActivity(intent);
+    }
+
+    public void goToLeader(View v){
+        Intent intent = new Intent(this, Leaderboard.class);
+        startActivity(intent);
+    }
+
 }
