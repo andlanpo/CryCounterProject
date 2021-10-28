@@ -64,6 +64,12 @@
         tools:layout_editor_absoluteX="4dp"
         tools:layout_editor_absoluteY="304dp" />
 
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="submit"
+        android:text="Button" />
 
 
 </LinearLayout>

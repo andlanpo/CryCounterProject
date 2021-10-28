@@ -42,6 +42,9 @@ public class Cry implements Parcelable, Comparable<Cry>{
         location = l;
         time = p;
     }
+    public Cry(){
+
+    }
 
     public String getLocation() {
         return location;

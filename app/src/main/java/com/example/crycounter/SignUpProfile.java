@@ -10,6 +10,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
@@ -83,7 +84,9 @@ public class SignUpProfile extends AppCompatActivity {
         firstName = editFirstName.getText().toString();
         lastName = editLastName.getText().toString();
 
-        Profile user = new Profile(moreOrLess, firstName, lastName, privacy, stressors, locations);
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = currentUser.getUid();
+        Profile user = new Profile(moreOrLess, firstName, lastName, privacy, stressors, locations, uid);
         dbHelper.addProfile(user);
 
 
