@@ -3,6 +3,7 @@ package com.example.crycounter;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Pair;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
@@ -17,7 +18,7 @@ import java.util.List;
 public class Statistics extends AppCompatActivity {
     LineChart lineChart;
     LineData lineData;
-    List<Entry> entryList = new ArrayList<>();
+    List<EntryString> entryList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,17 +26,17 @@ public class Statistics extends AppCompatActivity {
 
 
         lineChart = findViewById(R.id.lineChart);
-        entryList.add(new Entry(10,20));
-        entryList.add(new Entry(5,10));
-        entryList.add(new Entry(7,31));
-        entryList.add(new Entry(3,14));
-        LineDataSet lineDataSet = new LineDataSet(entryList,"country");
-        lineDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
-        lineDataSet.setFillAlpha(110);
-        lineData = new LineData(lineDataSet);
-        lineChart.setData(lineData);
-        lineChart.setVisibleXRangeMaximum(10);
-        lineChart.invalidate();
+        entryList.add(new EntryString("",20));
+        entryList.add(new EntryString("",10));
+        entryList.add(new EntryString("",31));
+        entryList.add(new EntryString("",14));
+//        LineDataSet lineDataSet = new LineDataSet(entryList,"country");
+//        lineDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
+//        lineDataSet.setFillAlpha(110);
+//        lineData = new LineData(lineDataSet);
+//        lineChart.setData(lineData);
+//        lineChart.setVisibleXRangeMaximum(10);
+//        lineChart.invalidate();
     }
 
     //https://learntodroid.com/how-to-display-a-line-chart-in-your-android-app/
