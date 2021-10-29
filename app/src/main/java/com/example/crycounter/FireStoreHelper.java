@@ -1,17 +1,23 @@
 package com.example.crycounter;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
@@ -25,7 +31,8 @@ import java.util.Collections;
 public class FireStoreHelper {
     private final FirebaseFirestore db;         // ref to entire database
     private CollectionReference profileRef;  // ref to profile collection only
-    private CollectionReference cryRef; // ref to cry collection only
+
+    private String currentUID;
 
     // arraylist of all profiles in database
     private ArrayList<Profile> profileArrayList= new ArrayList<>();
@@ -36,6 +43,7 @@ public class FireStoreHelper {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         profileRef = db.collection("profiles");
+        currentUID = mAuth.getCurrentUser().getUid();
 
         profileRef.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -63,30 +71,14 @@ public class FireStoreHelper {
 
      https://firebase.google.com/docs/firestore/manage-data/add-data?authuser=0
     */
-    public void addProfile(Profile profile) {
+    public void addProfile(Profile profile, String uid) {
         // use .add when you don't have a unique ID number for each document.  This will generate
-        // one for you.  If you did have a unique ID number, then you would use set.
-        db.collection("profiles")
-                .add(profile) // adds an event without a key defined yet
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    // documentReference contains a reference to the newly created Document if done successfully
-                    public void onSuccess(DocumentReference documentReference) {
-                        db.collection("profiles").document(documentReference.getId())
-                                .update("key", documentReference.getId());  // sets the DocID key for the Event that was just added
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.i("Denna", "Error adding document", e);
-                    }
-                });
-
+        // sets
+        db.collection("profiles").document(uid).set(profile);
     }
 
-    public void deleteProfile(String key) {
-        db.collection("profiles").document(key)
+    public void deleteProfile(String uid) {
+        db.collection("profiles").document(uid)
                 .delete()
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -106,20 +98,25 @@ public class FireStoreHelper {
     // set will override an existing Event object with this key
     // if one isn't available, then it will add the object.
     public void updateProfile(Profile profile) {
-        db.collection("profiles").document(profile.getKey())
+        db.collection("profiles").document(profile.getUID())
                 .set(profile);
     }
 
-    //public void addCry(Cry cry){
-        //String currentUID = mAuth.getCurrentUser().getUid();
-        //String currentKey = "";
+    public void addCry(Cry cry){
 
-        //Query query = profileRef.whereEqualTo("uid", currentUID);
-        //query.
+        DocumentReference profileRef = db.collection("profiles").document(currentUID);
+        profileRef.update("cries", FieldValue.arrayUnion(cry));
+    }
 
-
-
-   // }
+    public Profile getCurrentProfile(){
+        Profile not = new Profile();
+        for(Profile profile: profileArrayList){
+            if(profile.getUID().equals(currentUID)){
+                return profile;
+            }
+        }
+        return not;
+    }
 
 
 }

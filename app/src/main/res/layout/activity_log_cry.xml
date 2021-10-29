@@ -31,7 +31,7 @@
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="8dp" />
     <Spinner
-        android:id="@+id/location"
+        android:id="@+id/locations"
         android:layout_width="268dp"
         android:layout_height="49dp"
         tools:layout_editor_absoluteX="14dp"
