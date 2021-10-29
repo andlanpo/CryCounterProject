@@ -13,6 +13,10 @@ import android.widget.CalendarView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.List;
 
 public class LogCry extends AppCompatActivity {
@@ -23,6 +27,7 @@ public class LogCry extends AppCompatActivity {
         setContentView(R.layout.activity_log_cry);
         dbHelper = new FireStoreHelper();
 
+        
 
     }
 
@@ -31,13 +36,8 @@ public class LogCry extends AppCompatActivity {
     // }
 
     public void submit (View v){
-    //int date = findViewById(R.id.calendar); something like this to extract the date
-    //String stressor = findViewById(R.id.stressor); extract the stressor
-    // String location = findViewById(R.id.location);
-    // int time = findViewById(R.id.time);
-
-            Cry newCry = new Cry(0, "a", "l", 0);
-          dbHelper.addCry(newCry); // add cry to profile
+        Cry newCry = new Cry(0, "a", "l", 0);
+        dbHelper.addCry(newCry); // add cry to profile
 
     }
 

@@ -87,7 +87,7 @@ public class SignUpProfile extends AppCompatActivity {
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         String uid = currentUser.getUid();
         Profile user = new Profile(moreOrLess, firstName, lastName, privacy, stressors, locations, uid);
-        dbHelper.addProfile(user);
+        dbHelper.addProfile(user, uid);
 
 
         Toast.makeText(getApplicationContext(),"Saved Profile",Toast.LENGTH_SHORT).show();

@@ -18,7 +18,6 @@ public class Profile implements Parcelable, Comparable<Profile> {
     private ArrayList<String> locations;
     private ArrayList<String> stressors;
     private ArrayList<Cry> cries;
-    private String key;
     private String UID;
 
     public static final Parcelable.Creator<Profile> CREATOR = new Parcelable.Creator<Profile>() {
@@ -44,10 +43,13 @@ public class Profile implements Parcelable, Comparable<Profile> {
         cries = parcel.readArrayList(null);
         privacy = parcel.readBoolean();
         lastName = parcel.readString();
-        key = parcel.readString();
         UID = parcel.readString();
     }
 
+
+
+
+    public Profile() {}
 
     public Profile(boolean a, String f, String l, boolean p, ArrayList<String> s, ArrayList<String> lo, String uid ){
         moreOrLess = a;
@@ -58,22 +60,6 @@ public class Profile implements Parcelable, Comparable<Profile> {
         locations = lo;
         privacy = p;
         cries = new ArrayList<Cry>();
-        this.key = "no key yet";
-        this.UID = uid;
-    }
-
-    public Profile() {}
-
-    public Profile(boolean a, String f, String l, boolean p, ArrayList<String> s, ArrayList<String> lo, String key, String uid ){
-        moreOrLess = a;
-        firstName = f;
-        lastName = l;
-        //imageResourceID = i;
-        stressors = s;
-        locations = lo;
-        privacy = p;
-        cries = new ArrayList<Cry>();
-        this.key = key;
         this.UID = uid;
     }
 
@@ -88,7 +74,6 @@ public class Profile implements Parcelable, Comparable<Profile> {
         dest.writeList(stressors);
         dest.writeList(locations);
         dest.writeList(cries);
-        dest.writeString(key);
         dest.writeString(UID);
 
 
@@ -119,13 +104,7 @@ public class Profile implements Parcelable, Comparable<Profile> {
     public void cry(Cry cry){
         cries.add(cry);
     }
-    public String getKey() {
-        return key;
-    }
 
-    public void setKey(String key) {
-        this.key = key;
-    }
 
     public String getUID() {
         return UID;
