@@ -39,6 +39,8 @@ import java.util.List;
 public class LogCry extends AppCompatActivity {
     FireStoreHelper dbHelper;     // ref to entire database
     public static Profile current;
+    Spinner stressors;
+    Spinner locations;
 
 
     @Override
@@ -56,7 +58,7 @@ public class LogCry extends AppCompatActivity {
                 this, android.R.layout.simple_spinner_item, locationsArray);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Spinner locations = (Spinner) findViewById(R.id.locations);
+        locations = (Spinner) findViewById(R.id.locations);
         locations.setAdapter(adapter);
 
 
@@ -69,7 +71,7 @@ public class LogCry extends AppCompatActivity {
                 this, android.R.layout.simple_spinner_item, stressorsArray);
 
         sAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Spinner stressors = (Spinner) findViewById(R.id.stressors);
+        stressors = (Spinner) findViewById(R.id.stressors);
         stressors.setAdapter(sAdapter);
 
     }
@@ -79,8 +81,9 @@ public class LogCry extends AppCompatActivity {
     // }
 
     public void submit (View v){
-
-        Cry newCry = new Cry(0, "a", "l", 0);
+        String stress = stressors.getItemAtPosition(stressors.getSelectedItemPosition()).toString();
+        String locate = locations.getItemAtPosition(locations.getSelectedItemPosition()).toString();
+        Cry newCry = new Cry(0, stress, locate, 0);
         dbHelper.addCry(newCry); // add cry to profile
 
     }
