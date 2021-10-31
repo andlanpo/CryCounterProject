@@ -30,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
     FireStoreHelper dbHelper;
     private FirebaseFirestore db;
     public static Profile profile;
+    ArrayList<String> locations = new ArrayList<String>();
+    ArrayList<String> stressors = new ArrayList<String>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -124,6 +127,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void displayALocation(View v){
+        locations = profile.getLocations();
+        stressors = profile.getStressors();
         Toast.makeText(getApplicationContext(),profile.getLocations().get(0) ,Toast.LENGTH_SHORT).show();
 
     }

@@ -79,11 +79,10 @@ public class Cry implements Parcelable, Comparable<Cry>{
     }
 
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(location);
+        dest.writeString(stressor);
         dest.writeInt(date);
         dest.writeInt(time);
-        dest.writeString(stressor);
-        //dest.writeInt(imageResourceID);
+        dest.writeString(location);
     }
 
     public int describeContents() {

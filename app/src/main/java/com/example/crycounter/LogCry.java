@@ -41,7 +41,7 @@ public class LogCry extends AppCompatActivity {
     private CollectionReference profileRef;
     private DocumentReference ref;
     EventListener listener;
-    ArrayList<Profile> list;
+    private ArrayList<String> list;
     ArrayAdapter<String> adapter;
     public static Profile current;
 
@@ -54,7 +54,7 @@ public class LogCry extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         Intent intent = getIntent();
         current = intent.getParcelableExtra("profiles");
-        Toast.makeText(getApplicationContext(),current.getFirstName() + "profile set",Toast.LENGTH_SHORT).show();
+
 
 
 

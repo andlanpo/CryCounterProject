@@ -1,5 +1,6 @@
 package com.example.crycounter;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import android.os.Build;
@@ -13,7 +14,6 @@ public class Profile implements Parcelable, Comparable<Profile> {
     private boolean moreOrLess;
     private String firstName;
     private String lastName;
-//    private int imageResourceID;
     private boolean privacy;
     private ArrayList<String> locations;
     private ArrayList<String> stressors;
@@ -36,13 +36,14 @@ public class Profile implements Parcelable, Comparable<Profile> {
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
     public Profile(Parcel parcel) {
-        moreOrLess = parcel.readBoolean();
+
         firstName = parcel.readString();
+        moreOrLess = parcel.readBoolean();
+        privacy = parcel.readBoolean();
+        lastName = parcel.readString();
         stressors = parcel.readArrayList(null);
         locations = parcel.readArrayList(null);
         cries = parcel.readArrayList(null);
-        privacy = parcel.readBoolean();
-        lastName = parcel.readString();
         UID = parcel.readString();
     }
 
@@ -55,7 +56,6 @@ public class Profile implements Parcelable, Comparable<Profile> {
         moreOrLess = a;
         firstName = f;
         lastName = l;
-        //imageResourceID = i;
         stressors = s;
         locations = lo;
         privacy = p;
@@ -66,7 +66,7 @@ public class Profile implements Parcelable, Comparable<Profile> {
 
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel( Parcel dest, int flags) {
         dest.writeString(firstName);
         dest.writeBoolean(moreOrLess);
         dest.writeBoolean(privacy);
@@ -97,14 +97,9 @@ public class Profile implements Parcelable, Comparable<Profile> {
         this.lastName = lastName;
     }
 
-    //public void setImageResourceID(int imageResourceID) {
-        //this.imageResourceID = imageResourceID;
-    //}
-
     public void cry(Cry cry){
         cries.add(cry);
     }
-
 
     public String getUID() {
         return UID;
@@ -121,10 +116,6 @@ public class Profile implements Parcelable, Comparable<Profile> {
     public boolean isPrivacy() {
         return privacy;
     }
-
-    //public int getImageResourceID() {
-        //return imageResourceID;
-    //}
 
     public String getLastName() {
         return lastName;
