@@ -37,13 +37,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LogCry extends AppCompatActivity {
-    FireStoreHelper dbHelper;
-    private FirebaseFirestore db;         // ref to entire database
-    private CollectionReference profileRef;
-    private DocumentReference ref;
-    EventListener listener;
-    private ArrayList<String> list;
-    ArrayAdapter<String> adapter;
+    FireStoreHelper dbHelper;     // ref to entire database
     public static Profile current;
 
 
@@ -52,10 +46,9 @@ public class LogCry extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_cry);
         dbHelper = new FireStoreHelper();
-        db = FirebaseFirestore.getInstance();
+
         Intent intent = getIntent();
         current = intent.getParcelableExtra("profiles");
-
         // you need to have a list of data that you want the spinner to display
         ArrayList<String> locationsArray =  current.getLocations();
 
@@ -68,6 +61,8 @@ public class LogCry extends AppCompatActivity {
 
 
 
+        // you need to have a list of data that you want the spinner to display
+
         ArrayList<String> stressorsArray = current.getStressors();
 
         ArrayAdapter<String> sAdapter = new ArrayAdapter<String>(
@@ -76,21 +71,6 @@ public class LogCry extends AppCompatActivity {
         sAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Spinner stressors = (Spinner) findViewById(R.id.stressors);
         stressors.setAdapter(sAdapter);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 

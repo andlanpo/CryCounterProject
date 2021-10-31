@@ -73,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void logCry(View v){
+
+
         Intent intent = new Intent(MainActivity.this, LogCry.class);
         intent.putExtra("profiles", profile);
         startActivity(intent);

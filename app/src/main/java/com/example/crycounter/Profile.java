@@ -43,8 +43,10 @@ public class Profile implements Parcelable, Comparable<Profile> {
         lastName = parcel.readString();
         stressors = parcel.readArrayList(null);
         locations = parcel.readArrayList(null);
-        cries = parcel.readArrayList(null);
+        cries = new ArrayList<Cry>();
+        parcel.readList(cries, Cry.class.getClassLoader());
         UID = parcel.readString();
+
     }
 
     public Profile() {}
@@ -70,8 +72,10 @@ public class Profile implements Parcelable, Comparable<Profile> {
         dest.writeString(lastName);
         dest.writeList(stressors);
         dest.writeList(locations);
-        dest.writeList(cries);
+        dest.writeParcelableList(cries, flags);
+
         dest.writeString(UID);
+
 
 
         //dest.writeInt(imageResourceID);
