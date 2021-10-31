@@ -16,12 +16,27 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    FireStoreHelper dbHelper;
+    private FirebaseFirestore db;
+    public static Profile profile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        dbHelper = new FireStoreHelper();
+        db = FirebaseFirestore.getInstance();
 
         ConstraintLayout constraintLayout = findViewById(R.id.layout);
         Button statistics = findViewById(R.id.statistics);
@@ -56,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void logCry(View v){
         Intent intent = new Intent(MainActivity.this, LogCry.class);
+        intent.putExtra("profiles", profile);
         startActivity(intent);
     }
 
@@ -93,6 +109,23 @@ public class MainActivity extends AppCompatActivity {
     public void goToLeader(View v){
         Intent intent = new Intent(this, Leaderboard.class);
         startActivity(intent);
+    }
+
+    public void setProfile(View v){
+        DocumentReference docRef = db.collection("profiles").document(dbHelper.getCurrent());
+        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                profile = documentSnapshot.toObject(Profile.class);
+                Toast.makeText(getApplicationContext(),profile.getFirstName() + "profile set",Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+
+    public void displayALocation(View v){
+        Toast.makeText(getApplicationContext(),profile.getLocations().get(0) ,Toast.LENGTH_SHORT).show();
+
     }
 
 }

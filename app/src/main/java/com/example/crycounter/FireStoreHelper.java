@@ -3,6 +3,7 @@ package com.example.crycounter;
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 import android.util.Log;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,6 +28,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Map;
 
 public class FireStoreHelper {
     private final FirebaseFirestore db;         // ref to entire database
@@ -35,8 +37,11 @@ public class FireStoreHelper {
     private String currentUID;
 
     // arraylist of all profiles in database
-    private ArrayList<Profile> profileArrayList= new ArrayList<>();
+    public static ArrayList<Profile> profileArrayList= new ArrayList<>();
     FirebaseAuth mAuth;
+    public static Profile current;
+    private static String firstName;
+
 
 
     public FireStoreHelper() {
@@ -62,6 +67,7 @@ public class FireStoreHelper {
         });
     }
     public ArrayList<Profile> getProfileArrayList() {
+        Collections.sort(profileArrayList);
         return profileArrayList;
     }
 
@@ -107,16 +113,15 @@ public class FireStoreHelper {
         DocumentReference profileRef = db.collection("profiles").document(currentUID);
         profileRef.update("cries", FieldValue.arrayUnion(cry));
     }
-
-    public Profile getCurrentProfile(){
-        Profile not = new Profile();
-        for(Profile profile: profileArrayList){
-            if(profile.getUID().equals(currentUID)){
-                return profile;
-            }
-        }
-        return not;
+    public String getCurrent(){
+        return currentUID;
     }
+
+
+    public String getFirstName(){
+        return firstName;
+    }
+
 
 
 }
