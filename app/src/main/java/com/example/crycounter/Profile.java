@@ -47,9 +47,6 @@ public class Profile implements Parcelable, Comparable<Profile> {
         UID = parcel.readString();
     }
 
-
-
-
     public Profile() {}
 
     public Profile(boolean a, String f, String l, boolean p, ArrayList<String> s, ArrayList<String> lo, String uid ){

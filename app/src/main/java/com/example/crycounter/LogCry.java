@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,6 +56,27 @@ public class LogCry extends AppCompatActivity {
         Intent intent = getIntent();
         current = intent.getParcelableExtra("profiles");
 
+        // you need to have a list of data that you want the spinner to display
+        ArrayList<String> locationsArray =  current.getLocations();
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, locationsArray);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Spinner locations = (Spinner) findViewById(R.id.locations);
+        locations.setAdapter(adapter);
+
+
+
+        ArrayList<String> stressorsArray = current.getStressors();
+
+        ArrayAdapter<String> sAdapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, stressorsArray);
+
+        sAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Spinner stressors = (Spinner) findViewById(R.id.stressors);
+        stressors.setAdapter(sAdapter);
+
 
 
 
@@ -77,6 +99,7 @@ public class LogCry extends AppCompatActivity {
     // }
 
     public void submit (View v){
+
         Cry newCry = new Cry(0, "a", "l", 0);
         dbHelper.addCry(newCry); // add cry to profile
 

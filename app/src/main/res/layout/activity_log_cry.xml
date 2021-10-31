@@ -37,33 +37,6 @@
         tools:layout_editor_absoluteX="14dp"
         tools:layout_editor_absoluteY="28dp" />
 
-    <TextView
-        android:id="@+id/whenCry"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="When did you cry?"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="8dp" />
-
-    <CalendarView
-        android:id="@+id/calendar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/howCry"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="How good/bad was it?"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="8dp" />
-    <RatingBar
-        android:id="@+id/ratingBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="4dp"
-        tools:layout_editor_absoluteY="304dp" />
-
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
