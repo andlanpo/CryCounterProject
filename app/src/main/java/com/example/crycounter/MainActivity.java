@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToStats(View v){
         Intent intent = new Intent(this, Statistics.class);
+        intent.putExtra("profiles", profile);
         startActivity(intent);
     }
 
