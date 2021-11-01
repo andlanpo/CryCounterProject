@@ -76,9 +76,6 @@ public class LogCry extends AppCompatActivity {
 
     }
 
-    //public void fillSpinner(List<String> s){
-    //would be something like db.collection(Profile) and then get the stressors
-    // }
 
     public void submit (View v){
         String stress = stressors.getItemAtPosition(stressors.getSelectedItemPosition()).toString();

@@ -66,10 +66,6 @@ public class FireStoreHelper {
             }
         });
     }
-    public ArrayList<Profile> getProfileArrayList() {
-        Collections.sort(profileArrayList);
-        return profileArrayList;
-    }
 
     /* You can add custom objects with Firestore as long as there is a public constructor
     that takes no arguments AND a public getter for each property.  Because we included these

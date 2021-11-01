@@ -6,44 +6,19 @@ import android.os.Parcelable;
 
 import androidx.annotation.RequiresApi;
 
-public class Cry implements Parcelable, Comparable<Cry>{
+import java.util.ArrayList;
+
+public class Cry implements Parcelable{
 
     private String location;
     private String stressor;
     private int date;
     private int time;
 
-    public static final Parcelable.Creator<Cry> CREATOR = new Parcelable.Creator<Cry>() {
 
-        @RequiresApi(api = Build.VERSION_CODES.Q)
-        @Override
-        public Cry createFromParcel(Parcel parcel) {
-            return new Cry(parcel);
-        }
-
-        @Override
-        public Cry[] newArray(int size) {
-            return new Cry[0];
-        }
-    };
-
-    @RequiresApi(api = Build.VERSION_CODES.Q)
-    public Cry(Parcel parcel) {
-        stressor = parcel.readString();
-        date = parcel.readInt();
-        time = parcel.readInt();
-        location = parcel.readString();
-    }
-
-
-    public Cry(int a, String f, String l, int p){
-        date = a;
-        stressor = f;
-        location = l;
-        time = p;
-    }
-    public Cry(){
-
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public String getLocation() {
@@ -78,26 +53,47 @@ public class Cry implements Parcelable, Comparable<Cry>{
         this.time = time;
     }
 
+    @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(stressor);
-        dest.writeInt(date);
-        dest.writeInt(time);
-        dest.writeString(location);
+        dest.writeString(this.location);
+        dest.writeString(this.stressor);
+        dest.writeInt(this.date);
+        dest.writeInt(this.time);
     }
 
-    public int describeContents() {
-        return 0;
+    public void readFromParcel(Parcel source) {
+        this.location = source.readString();
+        this.stressor = source.readString();
+        this.date = source.readInt();
+        this.time = source.readInt();
     }
 
-    public int compareTo(Cry other) {
-        if(this.getStressor() == other.getStressor()){
-            if(this.getLocation() == other.getLocation()){
-                return 0;
-            }
+    public Cry() {
+    }
+
+    protected Cry(Parcel in) {
+        this.location = in.readString();
+        this.stressor = in.readString();
+        this.date = in.readInt();
+        this.time = in.readInt();
+    }
+
+    public static final Creator<Cry> CREATOR = new Creator<Cry>() {
+        @Override
+        public Cry createFromParcel(Parcel source) {
+            return new Cry(source);
         }
-        else{
-            return -1;
+
+        @Override
+        public Cry[] newArray(int size) {
+            return new Cry[size];
         }
-        return 0;
+    };
+
+    public Cry(int a, String f, String l, int p){
+        date = a;
+        stressor = f;
+        location = l;
+        time = p;
     }
 }
