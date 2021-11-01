@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 profile = documentSnapshot.toObject(Profile.class);
-                Toast.makeText(getApplicationContext(),profile.getFirstName() + "profile set",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),profile.getFirstName() + " profile set",Toast.LENGTH_SHORT).show();
 
             }
         });

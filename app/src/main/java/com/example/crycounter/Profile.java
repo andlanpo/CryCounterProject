@@ -74,6 +74,18 @@ public class Profile implements Parcelable{
         this.UID = uid;
     }
 
+    public static final Creator<Profile> CREATOR = new Creator<Profile>() {
+        @Override
+        public Profile createFromParcel(Parcel source) {
+            return new Profile(source);
+        }
+
+        @Override
+        public Profile[] newArray(int size) {
+            return new Profile[size];
+        }
+    };
+
     public boolean isMoreOrLess() {
         return moreOrLess;
     }
@@ -137,16 +149,4 @@ public class Profile implements Parcelable{
     public void setUID(String UID) {
         this.UID = UID;
     }
-
-    public static final Creator<Profile> CREATOR = new Creator<Profile>() {
-        @Override
-        public Profile createFromParcel(Parcel source) {
-            return new Profile(source);
-        }
-
-        @Override
-        public Profile[] newArray(int size) {
-            return new Profile[size];
-        }
-    };
 }
