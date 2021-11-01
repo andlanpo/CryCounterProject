@@ -3,6 +3,7 @@ package com.example.crycounter;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -56,6 +57,8 @@ public class SignUpPage extends AppCompatActivity {
         Log.i("Denna",  email + " " + password);
 
        signUp(email, password);
+       Intent intent = new Intent(this, SignUpProfile.class);
+       startActivity(intent);
     }
     public void signUp(String email, String password) {
 
