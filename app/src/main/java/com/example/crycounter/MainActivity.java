@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -32,12 +33,13 @@ public class MainActivity extends AppCompatActivity {
     public static Profile profile;
     ArrayList<String> locations = new ArrayList<String>();
     ArrayList<String> stressors = new ArrayList<String>();
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        mAuth = FirebaseAuth.getInstance();
         dbHelper = new FireStoreHelper();
         db = FirebaseFirestore.getInstance();
 
@@ -117,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setProfile(View v){
-        DocumentReference docRef = db.collection("profiles").document(dbHelper.getCurrent());
+        DocumentReference docRef = db.collection("profiles").document(mAuth.getCurrentUser().getUid());
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {

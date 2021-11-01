@@ -34,21 +34,17 @@ public class FireStoreHelper {
     private final FirebaseFirestore db;         // ref to entire database
     private CollectionReference profileRef;  // ref to profile collection only
 
-    private String currentUID;
 
     // arraylist of all profiles in database
-    public static ArrayList<Profile> profileArrayList= new ArrayList<>();
+    public static ArrayList<Profile> profileArrayList = new ArrayList<>();
     FirebaseAuth mAuth;
     public static Profile current;
-    private static String firstName;
-
 
 
     public FireStoreHelper() {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         profileRef = db.collection("profiles");
-        currentUID = mAuth.getCurrentUser().getUid();
 
         profileRef.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -59,7 +55,7 @@ public class FireStoreHelper {
                 // this for each loop will get each Document Snapshot from the query, and one at a time,
                 // convert them to an object of the Event class and then add them to the array list
 
-                for (QueryDocumentSnapshot doc: value) {
+                for (QueryDocumentSnapshot doc : value) {
                     Profile profile = doc.toObject(Profile.class);
                     profileArrayList.add(profile);
                 }
@@ -104,23 +100,11 @@ public class FireStoreHelper {
                 .set(profile);
     }
 
-    public void addCry(Cry cry){
+    public void addCry(Cry cry) {
 
-        DocumentReference profileRef = db.collection("profiles").document(currentUID);
+        DocumentReference profileRef = db.collection("profiles").document(mAuth.getCurrentUser().getUid());
         profileRef.update("cries", FieldValue.arrayUnion(cry));
     }
-    public String getCurrent(){
-        return currentUID;
-    }
-
-
-    public String getFirstName(){
-        return firstName;
-    }
-
-
-
-
 
 }
 

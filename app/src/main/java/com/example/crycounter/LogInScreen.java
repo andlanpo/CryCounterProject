@@ -86,5 +86,10 @@ public class LogInScreen extends AppCompatActivity {
 
     }
 
+    public void signUpPage(View v){
+        Intent intent3 = new Intent(this, SignUpPage.class);
+        this.startActivity(intent3);
+    }
+
 
 }

@@ -39,7 +39,8 @@
             android:exported="true" />
         <activity
             android:name=".SignUpPage"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".LogInScreen"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">
