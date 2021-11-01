@@ -103,6 +103,12 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent4 = new Intent(this, LogInScreen.class);
                 this.startActivity(intent4);
                 return true;
+
+            case R.id.logOut:
+                Intent intent5 = new Intent(this, LogInScreen.class);
+                mAuth.signOut();
+                this.startActivity(intent5);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

@@ -32,7 +32,7 @@
             android:label="Profile"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".LogInScreen"
+            android:name=".MainActivity"
             android:exported="true" />
         <activity
             android:name=".Statistics"
@@ -42,7 +42,7 @@
             android:exported="true"
             android:parentActivityName=".LogInScreen"/>
         <activity
-            android:name=".MainActivity"
+            android:name=".LogInScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
