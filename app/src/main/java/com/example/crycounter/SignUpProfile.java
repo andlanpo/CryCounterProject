@@ -12,24 +12,37 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
 public class SignUpProfile extends AppCompatActivity {
 
     private boolean moreOrLess;
+    private FirebaseFirestore db;         // ref to entire database
     private String firstName;
     private String lastName;
     private boolean privacy;
     private ArrayList<String> stressors = new ArrayList<>();
     private ArrayList<String> locations = new ArrayList<>();
     private FireStoreHelper dbHelper;
+    public static Profile current;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_profile);
         dbHelper = new FireStoreHelper();
+        db = FirebaseFirestore.getInstance();
+        Intent intent = getIntent();
+        current = intent.getParcelableExtra("profiles");
+        EditText firstNameField = (EditText) findViewById(R.id.editFirstName);
+        firstNameField.setText(current.getFirstName());
+        EditText lastNameField = (EditText) findViewById(R.id.editLastName);
+        lastNameField.setText(current.getLastName());
+
 
     }
 
@@ -86,10 +99,20 @@ public class SignUpProfile extends AppCompatActivity {
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         String uid = currentUser.getUid();
-        Profile user = new Profile(moreOrLess, firstName, lastName, privacy, stressors, locations, uid);
-        dbHelper.addProfile(user, uid);
 
+        DocumentReference profileRef = db.collection("profiles").document(uid);
+        for(String i: locations){
+            profileRef.update("locations", FieldValue.arrayUnion(i));
+        }
 
+        for(String f: stressors){
+            profileRef.update("stressors", FieldValue.arrayUnion(f));
+
+        }
+        profileRef.update("firstName", firstName);
+        profileRef.update("lastName", lastName);
+        profileRef.update("privacy", privacy);
+        profileRef.update("moreOrLess", moreOrLess);
         Toast.makeText(getApplicationContext(),"Saved Profile",Toast.LENGTH_SHORT).show();
         Intent intent1 = new Intent(this, LoadingScreen.class);
         this.startActivity(intent1);
