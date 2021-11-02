@@ -91,7 +91,7 @@ public class SignUpProfile extends AppCompatActivity {
 
 
         Toast.makeText(getApplicationContext(),"Saved Profile",Toast.LENGTH_SHORT).show();
-        Intent intent1 = new Intent(this, MainActivity.class);
+        Intent intent1 = new Intent(this, LoadingScreen.class);
         this.startActivity(intent1);
 
 

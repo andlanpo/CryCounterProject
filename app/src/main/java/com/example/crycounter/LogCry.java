@@ -94,7 +94,7 @@ public class LogCry extends AppCompatActivity {
         Cry newCry = new Cry(hour,minute, dayOfWeek, dayOfMonth, month, year, locate, stress);
         dbHelper.addCry(newCry); // add cry to profile
         Intent intent = new Intent(LogCry.this, MainActivity.class);
-        Toast.makeText(getApplicationContext(),time,Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),"Logged Cry",Toast.LENGTH_SHORT).show();
         startActivity(intent);
 
     }

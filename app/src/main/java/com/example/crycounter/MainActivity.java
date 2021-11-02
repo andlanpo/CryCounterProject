@@ -42,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         dbHelper = new FireStoreHelper();
         db = FirebaseFirestore.getInstance();
-
+        Intent intent = getIntent();
+        profile = intent.getParcelableExtra("profiles");
         ConstraintLayout constraintLayout = findViewById(R.id.layout);
         Button statistics = findViewById(R.id.statistics);
         Button leaderboard = findViewById(R.id.leaderboard);

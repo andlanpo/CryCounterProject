@@ -44,7 +44,7 @@ public class LogInScreen extends AppCompatActivity {
         if(currentUser != null){
             authStatusTV.setText("onStart reloaded and " + currentUser.getEmail() + " is logged in");
             // Take any action needed here when screen loads and a user is logged in
-            Intent intent = new Intent(LogInScreen.this, MainActivity.class);
+            Intent intent = new Intent(LogInScreen.this, LoadingScreen.class);
             startActivity(intent);
         }
         else {
@@ -57,7 +57,6 @@ public class LogInScreen extends AppCompatActivity {
         String email = emailET.getText().toString();
         String password = passwordET.getText().toString();
         Log.i("Denna",  email + " " + password);
-
         logIn(email, password);
     }
 
@@ -68,11 +67,12 @@ public class LogInScreen extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Intent intent = new Intent(LogInScreen.this, MainActivity.class);
+                            Intent intent = new Intent(LogInScreen.this, LoadingScreen.class);
                             startActivity(intent);
                             Log.i("Denna", "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             authStatusTV.setText("Signed in " + user.getEmail());
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.i("Denna", "signInWithEmail:failure", task.getException());

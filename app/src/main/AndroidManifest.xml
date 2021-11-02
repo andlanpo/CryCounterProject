@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CryCounter">
         <activity
+            android:name=".LoadingScreen"
+            android:exported="true" />
+        <activity
             android:name=".EntryString"
             android:exported="true" />
         <activity
@@ -27,11 +30,6 @@
             android:name=".LogCry"
             android:exported="true" />
         <activity
-            android:name=".Profile"
-            android:exported="true"
-            android:label="Profile"
-            android:parentActivityName=".MainActivity" />
-        <activity
             android:name=".MainActivity"
             android:exported="true" />
         <activity
@@ -39,8 +37,7 @@
             android:exported="true" />
         <activity
             android:name=".SignUpPage"
-            android:exported="true"
-            android:parentActivityName=".LogInScreen"/>
+            android:exported="true" />
         <activity
             android:name=".LogInScreen"
             android:exported="true">
