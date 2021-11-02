@@ -22,7 +22,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-
+//https://www.tutorialspoint.com/how-to-use-bar-chart-graph-in-android
 public class Statistics extends AppCompatActivity {
     LineChart lineChart;
     LineData lineData;
