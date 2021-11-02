@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class SignUpPage extends AppCompatActivity {
     EditText emailET, passwordET;
     TextView authStatusTV;
+    private FireStoreHelper dbHelper;
 
     private FirebaseAuth mAuth;
 
@@ -28,7 +29,7 @@ public class SignUpPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_page);
-
+        dbHelper = new FireStoreHelper();
         mAuth = FirebaseAuth.getInstance();
 
         emailET = findViewById(R.id.editTextEmail);
@@ -57,10 +58,11 @@ public class SignUpPage extends AppCompatActivity {
         Log.i("Denna",  email + " " + password);
 
        signUp(email, password);
-       Intent intent = new Intent(this, SignUpProfile.class);
-       startActivity(intent);
+
+
     }
     public void signUp(String email, String password) {
+        Intent intent = new Intent(this, SignUpProfile.class);
 
         // If the email and password passed in are not null, then try to create a User
         // if (email != null && password != null) {
@@ -73,6 +75,11 @@ public class SignUpPage extends AppCompatActivity {
                                 Log.i("Denna", "createUserWithEmail:success");
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 authStatusTV.setText("Signed up " + user.getEmail() + " successfully");
+                                Profile profile = new Profile(user.getUid());
+                                profile.setUID(user.getUid());
+                                dbHelper.addProfile(profile, user.getUid());
+                                intent.putExtra("profiles", profile);
+                                startActivity(intent);
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Log.i("Denna", "createUserWithEmail:failure", task.getException());

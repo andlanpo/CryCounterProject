@@ -44,21 +44,21 @@ public class MainActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         Intent intent = getIntent();
         profile = intent.getParcelableExtra("profiles");
-        ConstraintLayout constraintLayout = findViewById(R.id.layout);
-        Button statistics = findViewById(R.id.statistics);
-        Button leaderboard = findViewById(R.id.leaderboard);
-        Button button = findViewById(R.id.button5);
-
-        constraintLayout.setBackgroundColor(getResources().getColor(R.color.sunset_background));
-
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.sunset_navBar)));
-        Window window = getWindow();
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(getResources().getColor(R.color.sunset_navBar));
-
-        statistics.setBackgroundColor((getResources().getColor(R.color.sunset_button)));
-        leaderboard.setBackgroundColor((getResources().getColor(R.color.sunset_button)));
-        button.setBackgroundColor((getResources().getColor(R.color.sunset_button)));
+//        ConstraintLayout constraintLayout = findViewById(R.id.layout);
+//        Button statistics = findViewById(R.id.statistics);
+//        Button leaderboard = findViewById(R.id.leaderboard);
+//        Button button = findViewById(R.id.button5);
+//
+//        constraintLayout.setBackgroundColor(getResources().getColor(R.color.sunset_background));
+//
+//        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.sunset_navBar)));
+//        Window window = getWindow();
+//        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//        window.setStatusBarColor(getResources().getColor(R.color.sunset_navBar));
+//
+//        statistics.setBackgroundColor((getResources().getColor(R.color.sunset_button)));
+//        leaderboard.setBackgroundColor((getResources().getColor(R.color.sunset_button)));
+//        button.setBackgroundColor((getResources().getColor(R.color.sunset_button)));
     }
     @SuppressLint("RestrictedApi")
     @Override
@@ -90,21 +90,13 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.profile:
                 Intent intent1 = new Intent(this, SignUpProfile.class);
+                intent1.putExtra("profiles", profile);
                 this.startActivity(intent1);
                 return true;
             case R.id.themes:
                 Intent intent2 = new Intent(this, Themes.class);
                 this.startActivity(intent2);
                 return true;
-            case R.id.signUp:
-                Intent intent3 = new Intent(this, SignUpPage.class);
-                this.startActivity(intent3);
-                return true;
-            case R.id.logIn:
-                Intent intent4 = new Intent(this, LogInScreen.class);
-                this.startActivity(intent4);
-                return true;
-
             case R.id.logOut:
                 Intent intent5 = new Intent(this, LogInScreen.class);
                 mAuth.signOut();

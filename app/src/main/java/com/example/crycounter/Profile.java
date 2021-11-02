@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Profile implements Parcelable{
@@ -50,6 +51,17 @@ public class Profile implements Parcelable{
     }
 
     public Profile() {
+    }
+
+    public Profile(String uid){
+        firstName = "";
+        moreOrLess = false;
+        privacy = false;
+        lastName = "";
+        stressors = new ArrayList<String>();
+        locations = new ArrayList<String>();
+        cries = new ArrayList<Cry>();
+        this.UID = uid;
     }
 
     protected Profile(Parcel in) {
