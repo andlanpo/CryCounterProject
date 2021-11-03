@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-//https://www.tutorialspoint.com/how-to-use-bar-chart-graph-in-android
+
 public class Statistics extends AppCompatActivity {
     LineChart lineChart;
     LineData lineData;
@@ -40,9 +40,9 @@ public class Statistics extends AppCompatActivity {
     BarChart barChart;
     BarData barData;
     BarDataSet barDataSet;
-    ArrayList<String> barStressorNames;
+    ArrayList<String> barStressorX;
     ArrayList<Integer> barStressorValues;
-    ArrayList barLocations;
+    ArrayList<BarEntry> barEntries;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +51,7 @@ public class Statistics extends AppCompatActivity {
         Intent intent = getIntent();
         current = intent.getParcelableExtra("profiles");
 
+        //Line chart
         ArrayList<Integer> months = new ArrayList<Integer>();
         ArrayList<Cry> cries = current.getCries();
         for (int i = 0; i < cries.size(); i++) {
@@ -123,24 +124,34 @@ public class Statistics extends AppCompatActivity {
         lineChart.setVisibleXRangeMaximum(10);
         lineChart.invalidate();
 
+        //Bar chart
+        //https://www.tutorialspoint.com/how-to-use-bar-chart-graph-in-android
         barChart = findViewById(R.id.barChart);
+        ArrayList<String> barStressorNames = new ArrayList<String>();
         for (int i = 0; i < cries.size(); i++) {
             barStressorNames.set(i, cries.get(i).getStressor());
         }
         Collections.sort(barStressorNames); //https://beginnersbook.com/2013/12/how-to-sort-arraylist-in-java/
 
         int numStressor = 1;
+        String stressor = "";
         for (int i = 0; i < barStressorNames.size(); i++){
             if(barStressorNames.get(i).equals(barStressorNames.get(i+1))){
                 numStressor++;
             }
             else{
                 barStressorValues.add(numStressor);
-                numStressor = 1;      
+                numStressor = 1;
+                barStressorX.add(cries.get(i).getStressor());
             }
         }
 
+        for(int i = 0; i < barStressorValues.size(); i++){
+            barEntries.add(new BarEntry(barStressorValues.get(i), i));
+        }
 
+        barDataSet = new BarDataSet(barEntries, "Stressors");
+        //barData = new BarData(barStressorX,barDataSet); //https://www.youtube.com/watch?v=pi1tq-bp7uA
 
         //https://learntodroid.com/how-to-display-a-line-chart-in-your-android-app/
         //https://geekstocode.com/line-chart-in-android-studio/
