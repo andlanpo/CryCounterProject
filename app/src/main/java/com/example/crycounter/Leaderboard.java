@@ -38,6 +38,13 @@ public class Leaderboard extends AppCompatActivity {
         leaderboardObjectArrayList = dbHelper.getLeaderboardObjects();
         TextView text1 = findViewById(R.id.textView5);
         text1.setText(leaderboardObjectArrayList.get(0).toString());
+        TextView text2 = findViewById(R.id.textView7);
+        text2.setText(leaderboardObjectArrayList.get(1).toString());
+        TextView text3 = findViewById(R.id.textView8);
+        text3.setText(leaderboardObjectArrayList.get(2).toString());
+        TextView text4 = findViewById(R.id.textView9);
+        text4.setText(leaderboardObjectArrayList.get(3).toString());
+
 
 
     }
