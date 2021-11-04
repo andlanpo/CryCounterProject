@@ -161,4 +161,8 @@ public class Profile implements Parcelable{
     public void setUID(String UID) {
         this.UID = UID;
     }
+
+    public String toString(){
+        return lastName + " num cries " + cries.size();
+    }
 }

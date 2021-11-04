@@ -39,6 +39,7 @@ public class FireStoreHelper {
     public static ArrayList<Profile> profileArrayList = new ArrayList<>();
     FirebaseAuth mAuth;
     public static Profile current;
+    public static ArrayList<LeaderboardObject> leaderboardObjects = new ArrayList<>();
 
 
     public FireStoreHelper() {
@@ -58,7 +59,14 @@ public class FireStoreHelper {
                 for (QueryDocumentSnapshot doc : value) {
                     Profile profile = doc.toObject(Profile.class);
                     profileArrayList.add(profile);
+                    if(!(profile.isPrivacy())){
+                        LeaderboardObject currentLeader = new LeaderboardObject(profile.getFirstName(),
+                                profile.getLastName(), profile.getCries().size());
+                        leaderboardObjects.add(currentLeader);
+                    }
+
                 }
+                Log.i("Andrew", profileArrayList.toString());
             }
         });
     }
@@ -104,8 +112,12 @@ public class FireStoreHelper {
 
         DocumentReference profileRef = db.collection("profiles").document(mAuth.getCurrentUser().getUid());
         profileRef.update("cries", FieldValue.arrayUnion(cry));
+        Log.i("Andrew", "Added cry" +cry.getLocation() + " " + cry.getStressor());
     }
 
+    public ArrayList<LeaderboardObject> getLeaderboardObjects() {
+        return leaderboardObjects;
+    }
 }
 
 
