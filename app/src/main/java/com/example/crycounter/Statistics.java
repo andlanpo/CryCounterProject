@@ -13,6 +13,7 @@ import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
@@ -34,9 +35,8 @@ public class Statistics extends AppCompatActivity {
     LineChart lineChart;
     LineData lineData;
     List<Entry> entryList = new ArrayList<>();
-    Profile current;
+    public static Profile current;
     private FirebaseFirestore db;
-    public static Profile profile;
     BarChart barChart;
     BarData barData;
     BarDataSet barDataSet;
@@ -50,13 +50,17 @@ public class Statistics extends AppCompatActivity {
         setContentView(R.layout.activity_statistics);
         Intent intent = getIntent();
         current = intent.getParcelableExtra("profiles");
+        barStressorValues = new ArrayList<Integer>();
+        barData= new BarData();
+        barEntries = new ArrayList<BarEntry>();
+
 
         //Line chart
         ArrayList<Integer> months = new ArrayList<Integer>();
         ArrayList<Cry> cries = current.getCries();
         for (int i = 0; i < cries.size(); i++) {
             //get the amount of cries in each month
-            months.set(i, cries.get(i).getMonth());
+            months.add(cries.get(i).getMonth());
         }
 
         int jan = 0;
@@ -126,35 +130,74 @@ public class Statistics extends AppCompatActivity {
 
         //Bar chart
         //https://www.tutorialspoint.com/how-to-use-bar-chart-graph-in-android
-        barChart = findViewById(R.id.barChart);
-        ArrayList<String> barStressorNames = new ArrayList<String>();
-        for (int i = 0; i < cries.size(); i++) {
-            barStressorNames.set(i, cries.get(i).getStressor());
+          //Initializes the bar chart
+        barChart = (BarChart) findViewById(R.id.barChart);
+          //Creates aan arraylist to hold all of the stressor names
+       ArrayList<String> barStressorNames = new ArrayList<String>();
+          //Adds stressor names from Firebase to arraylist
+      for (int i = 0; i < cries.size(); i++) {
+           barStressorNames.add(cries.get(i).getStressor());
         }
-        Collections.sort(barStressorNames); //https://beginnersbook.com/2013/12/how-to-sort-arraylist-in-java/
+      Collections.sort(barStressorNames); //https://beginnersbook.com/2013/12/how-to-sort-arraylist-in-java/
 
-        int numStressor = 1;
-        String stressor = "";
-        for (int i = 0; i < barStressorNames.size(); i++){
-            if(barStressorNames.get(i).equals(barStressorNames.get(i+1))){
-                numStressor++;
+//        int numStressor = 1;
+//        String stressor = "";
+//        for (int i = 0; i < barStressorNames.size()-1; i++){
+//            if(barStressorNames.get(i).equals(barStressorNames.get(i+1))){
+//                numStressor++;
+//            }
+//            else{
+//                barStressorValues.add(numStressor);
+//                numStressor = 1;
+//                barStressorX.add(cries.get(i).getStressor());
+//            }
+//        }
+
+        int numStressor = 0;
+        ArrayList<BarGraphStressor> listStressors = new ArrayList<BarGraphStressor>();
+        for(int i = 0; i < current.getCries().size(); i++){
+            for(int j = 0; j < listStressors.size(); j++){
+                if(current.getCries().get(i).getStressor().equals(listStressors.get(j).getStressorName())){
+                    listStressors.get(j).updateAmount();
+                }
+                else {
+                   // Kept track of how many times else executed
+                    // if this count is = to size of array, then you know it isn't found and after for loop
+                    // you add it
+                }
             }
-            else{
-                barStressorValues.add(numStressor);
-                numStressor = 1;
-                barStressorX.add(cries.get(i).getStressor());
+            if (listStressors.size() == 0) {
+                // this is the first element, it must be added
+                listStressors.add(new BarGraphStressor(current.getCries().get(i).getStressor(), 1));
             }
+
         }
 
-        for(int i = 0; i < barStressorValues.size(); i++){
-            barEntries.add(new BarEntry(barStressorValues.get(i), i));
-        }
+//        for(int i = 0; i < current.getStressors().size(); i++){
+//            for(int j = 0; j < barStressorNames.size(); j++){
+//                if(current.getStressors().get(i).equals(barStressorNames.get(j))){
+//                    numStressor++;
+//                }
+//            }
+//            //BarGraphStressor displayStressor = new BarGraphStressor(current.getStressors().get(i), numStressor);
+//            listStressors.add(new BarGraphStressor(current.getStressors().get(i), numStressor));
+//            numStressor = 0;
+//        }
 
+        for(int i = 0; i < listStressors.size(); i++){
+            barEntries.add(new BarEntry(listStressors.get(i).getStressorAmount(), i));
+        }
         barDataSet = new BarDataSet(barEntries, "Stressors");
-        //barData = new BarData(barStressorX,barDataSet); //https://www.youtube.com/watch?v=pi1tq-bp7uA
+        barStressorX = new ArrayList<String>();
+        for(int i =0; i < listStressors.size(); i++){
+            barStressorX.add(listStressors.get(i).getStressorName());
+        }
+        barData = new BarData((IBarDataSet) barStressorX,barDataSet); //https://www.youtube.com/watch?v=pi1tq-bp7uA
+        barChart.setData(barData);
+        barChart.setTouchEnabled(true);
 
-        //https://learntodroid.com/how-to-display-a-line-chart-in-your-android-app/
-        //https://geekstocode.com/line-chart-in-android-studio/
+       //https://learntodroid.com/how-to-display-a-line-chart-in-your-android-app/
+      //https://geekstocode.com/line-chart-in-android-studio/
 
         //https://www.codingdemos.com/draw-android-line-chart/ (Look at this)
 
