@@ -115,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToLeader(View v){
         Intent intent = new Intent(this, Leaderboard.class);
+        intent.putExtra("profiles", profile);
         startActivity(intent);
     }
 
