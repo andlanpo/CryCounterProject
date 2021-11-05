@@ -156,7 +156,8 @@ public class Statistics extends AppCompatActivity {
         int notInList = 0;
         ArrayList<BarGraphStressor> listStressors = new ArrayList<BarGraphStressor>();
         for(int i = 0; i < current.getCries().size(); i++){
-            for(int j = 0; j < listStressors.size(); j++){
+            notInList = 0;
+           for(int j = 0; j < listStressors.size(); j++){
                 if(current.getCries().get(i).getStressor().equals(listStressors.get(j).getStressorName())){
                     listStressors.get(j).updateAmount();
                 }
@@ -175,7 +176,6 @@ public class Statistics extends AppCompatActivity {
                 listStressors.add(new BarGraphStressor(current.getCries().get(i).getStressor(), 1));
             }
         }
-
 //        for(int i = 0; i < current.getStressors().size(); i++){
 //            for(int j = 0; j < barStressorNames.size(); j++){
 //                if(current.getStressors().get(i).equals(barStressorNames.get(j))){
@@ -195,7 +195,13 @@ public class Statistics extends AppCompatActivity {
         for(int i =0; i < listStressors.size(); i++){
             barStressorX.add(listStressors.get(i).getStressorName());
         }
-        barData = new BarData((IBarDataSet) barStressorX,barDataSet); //https://www.youtube.com/watch?v=pi1tq-bp7uA
+//        int count = 0;
+//        String stressorName = "";
+//        int index = 0;
+//        while(index < barStressorNames.size()){
+//
+//        }
+        barData = new BarData(barDataSet); //https://www.youtube.com/watch?v=vhKtbECeazQ&t=750s
         barChart.setData(barData);
         barChart.setTouchEnabled(true);
 
