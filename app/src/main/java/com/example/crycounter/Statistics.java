@@ -153,7 +153,7 @@ public class Statistics extends AppCompatActivity {
 //            }
 //        }
 
-        int numStressor = 0;
+        int notInList = 0;
         ArrayList<BarGraphStressor> listStressors = new ArrayList<BarGraphStressor>();
         for(int i = 0; i < current.getCries().size(); i++){
             for(int j = 0; j < listStressors.size(); j++){
@@ -161,6 +161,7 @@ public class Statistics extends AppCompatActivity {
                     listStressors.get(j).updateAmount();
                 }
                 else {
+                    notInList++;
                    // Kept track of how many times else executed
                     // if this count is = to size of array, then you know it isn't found and after for loop
                     // you add it
@@ -170,7 +171,9 @@ public class Statistics extends AppCompatActivity {
                 // this is the first element, it must be added
                 listStressors.add(new BarGraphStressor(current.getCries().get(i).getStressor(), 1));
             }
-
+            if(notInList == listStressors.size()){
+                listStressors.add(new BarGraphStressor(current.getCries().get(i).getStressor(), 1));
+            }
         }
 
 //        for(int i = 0; i < current.getStressors().size(); i++){
