@@ -52,6 +52,7 @@ public class FireStoreHelper {
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                 // clear out the array list so that none of the events are duplicated in the display
                 profileArrayList.clear();
+                leaderboardObjects.clear();
 
                 // this for each loop will get each Document Snapshot from the query, and one at a time,
                 // convert them to an object of the Event class and then add them to the array list
