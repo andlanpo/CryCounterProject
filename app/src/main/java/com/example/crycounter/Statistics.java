@@ -10,9 +10,11 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -127,12 +129,14 @@ public class Statistics extends AppCompatActivity {
         lineDataSet.setFillAlpha(110);
         lineData = new LineData(lineDataSet);
         lineChart.setData(lineData);
+        lineChart.getDescription().setText("Your Cry Data");
         lineChart.setVisibleXRangeMaximum(10);
         lineChart.invalidate();
 
         //https://learntodroid.com/how-to-display-a-line-chart-in-your-android-app/
         //https://geekstocode.com/line-chart-in-android-studio/
         //https://www.codingdemos.com/draw-android-line-chart/ (Look at this)
+
 
         //Stressor bar chart
         //https://www.tutorialspoint.com/how-to-use-bar-chart-graph-in-android
@@ -215,57 +219,75 @@ public class Statistics extends AppCompatActivity {
         barData = new BarData(barDataSet); //https://www.youtube.com/watch?v=vhKtbECeazQ&t=750s
         barChart.setFitBars(true);
         barChart.setData(barData);
+        XAxis xAxisStressor = barChart.getXAxis(); //https://www.youtube.com/watch?v=sXo2SkX7rGk
+        xAxisStressor.setValueFormatter(new IndexAxisValueFormatter(barStressorX));
+        xAxisStressor.setPosition(XAxis.XAxisPosition.TOP);
+        xAxisStressor.setDrawGridLines(false);
+        xAxisStressor.setDrawGridLines(false);
+        xAxisStressor.setGranularity(1f);
+        xAxisStressor.setLabelCount(barStressorX.size());
+        xAxisStressor.setLabelRotationAngle(270);
         barChart.setTouchEnabled(true);
         barChart.getDescription().setText("Your Stressor Data");
 
 
         //Locations bar chart
-//        barChartLocation = (BarChart) findViewById(R.id.barChartLocation);
-//        ArrayList<String> barLocationNames = new ArrayList<String>();
-//        for (int i = 0; i < cries.size(); i++) {
-//            barLocationNames.add(cries.get(i).getLocation());
-//        }
-//        Collections.sort(barLocationNames); //https://beginnersbook.com/2013/12/how-to-sort-arraylist-in-java/
-//
-//        int notInLocations = 0;
-//        ArrayList<BarGraphStressor> listLocations = new ArrayList<BarGraphStressor>();
-//        for(int i = 0; i < current.getCries().size(); i++){
-//            notInLocations = 0;
-//            for(int j = 0; j < listLocations.size(); j++){
-//                if(current.getCries().get(i).getLocation().equals(listLocations.get(j).getStressorName())){
-//                    listLocations.get(j).updateAmount();
-//                }
-//                else {
-//                    notInLocations++;
-//                    // Kept track of how many times else executed
-//                    // if this count is = to size of array, then you know it isn't found and after for loop
-//                    // you add it
-//                }
-//            }
-//            if (listLocations.size() == 0) {
-//                // this is the first element, it must be added
-//                listLocations.add(new BarGraphStressor(current.getCries().get(i).getLocation(), 1));
-//            }
-//            if(notInList == listStressors.size()){
-//                listLocations.add(new BarGraphStressor(current.getCries().get(i).getLocation(), 1));
-//            }
-//        }
-//        for(int i = 0; i < listStressors.size(); i++){
-//            barEntriesLocations.add(new BarEntry(listLocations.get(i).getStressorAmount(), i));
-//        }
-//        barDataSetLocation = new BarDataSet(barEntriesLocations, "Locations");
-//        barDataSetLocation.setColors(ColorTemplate.MATERIAL_COLORS);
-//        barDataSetLocation.setValueTextColor(Color.BLACK);
-//        barDataSetLocation.setValueTextSize(16f);
-//        barLocationX = new ArrayList<String>();
-//        for(int i =0; i < listStressors.size(); i++){
-//            barLocationX.add(listLocations.get(i).getStressorName());
-//        }
-//        barDataLocation = new BarData(barDataSetLocation); //https://www.youtube.com/watch?v=vhKtbECeazQ&t=750s
-//        barChartLocation.setFitBars(true);
-//        barChartLocation.setData(barDataLocation);
-//        barChartLocation.setTouchEnabled(true);
-//        barChart.getDescription().setText("Your Location Data");
+        barDataLocation = new BarData();
+        barEntriesLocations = new ArrayList<BarEntry>();
+        barChartLocation = (BarChart) findViewById(R.id.barChartLocation);
+        ArrayList<String> barLocationNames = new ArrayList<String>();
+        for (int i = 0; i < cries.size(); i++) {
+            barLocationNames.add(cries.get(i).getLocation());
+        }
+        Collections.sort(barLocationNames); //https://beginnersbook.com/2013/12/how-to-sort-arraylist-in-java/
+
+        int notInLocations = 0;
+        ArrayList<BarGraphStressor> listLocations = new ArrayList<BarGraphStressor>();
+        for(int i = 0; i < current.getCries().size(); i++){
+            notInLocations = 0;
+            for(int j = 0; j < listLocations.size(); j++){
+                if(current.getCries().get(i).getLocation().equals(listLocations.get(j).getStressorName())){
+                    listLocations.get(j).updateAmount();
+                }
+                else {
+                    notInLocations++;
+                    // Kept track of how many times else executed
+                    // if this count is = to size of array, then you know it isn't found and after for loop
+                    // you add it
+                }
+            }
+            if (listLocations.size() == 0) {
+                // this is the first element, it must be added
+                listLocations.add(new BarGraphStressor(current.getCries().get(i).getLocation(), 1));
+            }
+            if(notInLocations == listLocations.size()){
+                listLocations.add(new BarGraphStressor(current.getCries().get(i).getLocation(), 1));
+            }
+        }
+        for(int i = 0; i < listLocations.size(); i++){
+            barEntriesLocations.add(new BarEntry(listLocations.get(i).getStressorAmount(), i));
+        }
+        barDataSetLocation = new BarDataSet(barEntriesLocations, "Locations");
+        barDataSetLocation.setColors(ColorTemplate.MATERIAL_COLORS);
+        barDataSetLocation.setValueTextColor(Color.BLACK);
+        barDataSetLocation.setValueTextSize(16f);
+        barLocationX = new ArrayList<String>();
+        for(int i =0; i < listLocations.size(); i++){
+            barLocationX.add(listLocations.get(i).getStressorName());
+        }
+        barDataLocation = new BarData(barDataSetLocation); //https://www.youtube.com/watch?v=vhKtbECeazQ&t=750s
+        barChartLocation.setFitBars(true);
+        barChartLocation.setData(barDataLocation);
+        XAxis xAxisLocation = barChartLocation.getXAxis();
+        xAxisLocation.setValueFormatter(new IndexAxisValueFormatter(barLocationX));
+        xAxisLocation.setPosition(XAxis.XAxisPosition.TOP);
+        xAxisLocation.setDrawGridLines(false);
+        xAxisLocation.setDrawGridLines(false);
+        xAxisLocation.setGranularity(1f);
+        xAxisLocation.setLabelCount(barLocationX.size());
+        xAxisLocation.setLabelRotationAngle(270);
+        barChartLocation.setTouchEnabled(true);
+        barChartLocation.getDescription().setText("Your Location Data");
 
     }
 
