@@ -6,6 +6,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.Evermore);
         setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance();
         dbHelper = new FireStoreHelper();
@@ -49,16 +51,16 @@ public class MainActivity extends AppCompatActivity {
 //        Button leaderboard = findViewById(R.id.leaderboard);
 //        Button button = findViewById(R.id.button5);
 //
-//        constraintLayout.setBackgroundColor(getResources().getColor(R.color.sunset_background));
+//        constraintLayout.setBackgroundColor(getResources().getColor(R.color.punisher_background));
 //
-//        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.sunset_navBar)));
+//        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.punisher_button)));
 //        Window window = getWindow();
 //        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-//        window.setStatusBarColor(getResources().getColor(R.color.sunset_navBar));
+//        window.setStatusBarColor(getResources().getColor(R.color.punisher_button));
 //
-//        statistics.setBackgroundColor((getResources().getColor(R.color.sunset_button)));
-//        leaderboard.setBackgroundColor((getResources().getColor(R.color.sunset_button)));
-//        button.setBackgroundColor((getResources().getColor(R.color.sunset_button)));
+//        statistics.setBackgroundColor((getResources().getColor(R.color.punisher_navBar)));
+//        leaderboard.setBackgroundColor((getResources().getColor(R.color.punisher_navBar)));
+//        button.setBackgroundColor((getResources().getColor(R.color.punisher_navBar)));
     }
     @SuppressLint("RestrictedApi")
     @Override

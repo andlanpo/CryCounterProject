@@ -14,17 +14,24 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="Theme.PunisherCryCounter" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Punisher" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/punisher_text</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/punisher_text</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/punisher_navBar</item>
-        <item name="colorSecondaryVariant">@color/punisher_navBar</item>
-        <item name="colorOnSecondary">@color/punisher_navBar</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">@color/punisher_button</item>
-        <!-- Customize your theme here. -->
+        <item name="android:background">@color/punisher_background</item>
+        <item name="colorPrimary">@color/punisher_navBar</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/punisher_navBar</item>
+    </style>
+
+    <style name="Melodrama" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:colorBackground">@color/melodrama_background</item>
+        <item name = "colorOnBackground">@color/evermore_navBar</item>
+        <item name="colorPrimary">@color/melodrama_navBar</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/melodrama_background</item>
+    </style>
+
+    <style name="Evermore" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:colorBackground">@color/evermore_background</item>
+        <item name = "colorOnBackground">@color/evermore_navBar</item>
+        <item name="colorPrimary">@color/evermore_button</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/evermore_button</item>
     </style>
 </resources>
