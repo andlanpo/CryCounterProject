@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -288,6 +289,97 @@ public class Statistics extends AppCompatActivity {
         xAxisLocation.setLabelRotationAngle(270);
         barChartLocation.setTouchEnabled(true);
         barChartLocation.getDescription().setText("Your Location Data");
+
+        mostLikelyToHour();
+        mostLikelyToDay();
+        mostLikelyToLocation();
+
+    }
+
+    public void mostLikelyToHour(){
+        ArrayList<Integer> cryHours = new ArrayList<Integer>();
+        for(int i = 0; i < current.getCries().size(); i++){
+            cryHours.add(current.getCries().get(i).getHour());
+        }
+        Collections.sort(cryHours);
+        int index = 0;
+        int countHighest = 0;
+        int count = 0;
+        int hour = cryHours.get(0);
+        while(index < cryHours.size()-1){
+            if(cryHours.get(index) == cryHours.get(index + 1)){
+                count++;
+            }
+            else if (countHighest < count){
+                countHighest = count;
+                hour = cryHours.get(index);
+                count = 0;
+            }
+            else{
+                count = 0;
+            }
+            index++;
+        }
+        TextView text4 = findViewById(R.id.likelyHour);
+        text4.setText("you are most likely to cry at " + hour);
+
+    }
+
+    public void mostLikelyToDay(){
+        ArrayList<String> cryStressors = new ArrayList<String>();
+        for(int i = 0; i < current.getCries().size(); i++){
+            cryStressors.add(current.getCries().get(i).getStressor());
+        }
+        Collections.sort(cryStressors);
+        int index = 0;
+        int countHighest = 0;
+        int count = 0;
+        String stressor = cryStressors.get(0);
+        while(index < cryStressors.size()-1){
+            if(cryStressors.get(index).equals(cryStressors.get(index + 1))){
+                count++;
+            }
+            else if (countHighest < count){
+                countHighest = count;
+                stressor = cryStressors.get(index);
+                count = 0;
+            }
+            else{
+                count = 0;
+            }
+            index++;
+        }
+        TextView text5 = findViewById(R.id.likelyDay);
+        text5.setText("you are most likely to cry at " + stressor);
+
+    }
+
+    public void mostLikelyToLocation(){
+        ArrayList<String> cryLocations = new ArrayList<String>();
+        for(int i = 0; i < current.getCries().size(); i++){
+            cryLocations.add(current.getCries().get(i).getLocation());
+        }
+        Collections.sort(cryLocations);
+        int index = 0;
+        int countHighest = 0;
+        int count = 0;
+        String location = cryLocations.get(0);
+        while(index < cryLocations.size()-1){
+            if(cryLocations.get(index).equals(cryLocations.get(index + 1))){
+                count++;
+            }
+            else if (countHighest < count){
+                countHighest = count;
+                location = cryLocations.get(index);
+                count = 0;
+            }
+            else{
+                count = 0;
+            }
+            index++;
+        }
+        TextView text6 = findViewById(R.id.likelyLocation);
+        text6.setText("you are most likely to cry at " + location);
 
     }
 
