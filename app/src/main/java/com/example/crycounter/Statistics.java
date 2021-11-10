@@ -55,6 +55,7 @@ public class Statistics extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Add theme stuff before this line from Themes.java
         setContentView(R.layout.activity_statistics);
         Intent intent = getIntent();
         current = intent.getParcelableExtra("profiles");
@@ -222,7 +223,7 @@ public class Statistics extends AppCompatActivity {
         barChart.setData(barData);
         XAxis xAxisStressor = barChart.getXAxis(); //https://www.youtube.com/watch?v=sXo2SkX7rGk
         xAxisStressor.setValueFormatter(new IndexAxisValueFormatter(barStressorX));
-        xAxisStressor.setPosition(XAxis.XAxisPosition.TOP);
+        xAxisStressor.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxisStressor.setDrawGridLines(false);
         xAxisStressor.setDrawGridLines(false);
         xAxisStressor.setGranularity(1f);
@@ -281,7 +282,7 @@ public class Statistics extends AppCompatActivity {
         barChartLocation.setData(barDataLocation);
         XAxis xAxisLocation = barChartLocation.getXAxis();
         xAxisLocation.setValueFormatter(new IndexAxisValueFormatter(barLocationX));
-        xAxisLocation.setPosition(XAxis.XAxisPosition.TOP);
+        xAxisLocation.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxisLocation.setDrawGridLines(false);
         xAxisLocation.setDrawGridLines(false);
         xAxisLocation.setGranularity(1f);
@@ -289,7 +290,8 @@ public class Statistics extends AppCompatActivity {
         xAxisLocation.setLabelRotationAngle(270);
         barChartLocation.setTouchEnabled(true);
         barChartLocation.getDescription().setText("Your Location Data");
-
+        barChartLocation.getAxisLeft().setAxisMinimum(0);
+        barChartLocation.getAxisRight().setAxisMinimum(0);
         mostLikelyToHour();
         mostLikelyToDay();
         mostLikelyToLocation();
