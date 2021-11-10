@@ -33,6 +33,7 @@ public class SignUpProfile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.Default);
         setContentView(R.layout.activity_sign_up_profile);
         dbHelper = new FireStoreHelper();
         db = FirebaseFirestore.getInstance();

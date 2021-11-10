@@ -53,7 +53,7 @@ public class FireStoreHelper {
                 // clear out the array list so that none of the events are duplicated in the display
                 profileArrayList.clear();
                 leaderboardObjects.clear();
-
+                Log.i("andrew", "change made to data");
                 // this for each loop will get each Document Snapshot from the query, and one at a time,
                 // convert them to an object of the Event class and then add them to the array list
 
@@ -114,6 +114,12 @@ public class FireStoreHelper {
         DocumentReference profileRef = db.collection("profiles").document(mAuth.getCurrentUser().getUid());
         profileRef.update("cries", FieldValue.arrayUnion(cry));
         Log.i("Andrew", "Added cry" +cry.getLocation() + " " + cry.getStressor());
+    }
+
+    public void setTheme(int theme){
+        DocumentReference profileRef = db.collection("profiles").document(mAuth.getCurrentUser().getUid());
+        profileRef.update("theme", theme);
+        Log.i("Andrew", "Added theme" );
     }
 
     public ArrayList<LeaderboardObject> getLeaderboardObjects() {

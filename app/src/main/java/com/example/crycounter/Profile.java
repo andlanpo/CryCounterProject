@@ -20,6 +20,7 @@ public class Profile implements Parcelable{
     private ArrayList<String> stressors;
     private ArrayList<Cry> cries;
     private String UID;
+    private int theme;
 
 
     @Override
@@ -37,6 +38,7 @@ public class Profile implements Parcelable{
         dest.writeStringList(this.stressors);
         dest.writeTypedList(this.cries);
         dest.writeString(this.UID);
+        dest.writeInt(this.theme);
     }
 
     public void readFromParcel(Parcel source) {
@@ -48,6 +50,7 @@ public class Profile implements Parcelable{
         this.stressors = source.createStringArrayList();
         this.cries = source.createTypedArrayList(Cry.CREATOR);
         this.UID = source.readString();
+        this.theme = source.readInt();
     }
 
     public Profile() {
@@ -62,6 +65,7 @@ public class Profile implements Parcelable{
         locations = new ArrayList<String>();
         cries = new ArrayList<Cry>();
         this.UID = uid;
+        theme = 0;
     }
 
     protected Profile(Parcel in) {
@@ -73,6 +77,15 @@ public class Profile implements Parcelable{
         this.stressors = in.createStringArrayList();
         this.cries = in.createTypedArrayList(Cry.CREATOR);
         this.UID = in.readString();
+        this.theme = in.readInt();
+    }
+
+    public int getTheme() {
+        return theme;
+    }
+
+    public void setTheme(int theme) {
+        this.theme = theme;
     }
 
     public Profile(boolean a, String f, String l, boolean p, ArrayList<String> s, ArrayList<String> lo, String uid ){
@@ -84,6 +97,7 @@ public class Profile implements Parcelable{
         locations = lo;
         cries = new ArrayList<Cry>();
         this.UID = uid;
+        theme = 0;
     }
 
     public static final Creator<Profile> CREATOR = new Creator<Profile>() {

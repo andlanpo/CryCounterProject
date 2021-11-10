@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -39,28 +40,28 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(R.style.Evermore);
-        setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance();
         dbHelper = new FireStoreHelper();
         db = FirebaseFirestore.getInstance();
         Intent intent = getIntent();
         profile = intent.getParcelableExtra("profiles");
-//        ConstraintLayout constraintLayout = findViewById(R.id.layout);
-//        Button statistics = findViewById(R.id.statistics);
-//        Button leaderboard = findViewById(R.id.leaderboard);
-//        Button button = findViewById(R.id.button5);
-//
-//        constraintLayout.setBackgroundColor(getResources().getColor(R.color.punisher_background));
-//
-//        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.punisher_button)));
-//        Window window = getWindow();
-//        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-//        window.setStatusBarColor(getResources().getColor(R.color.punisher_button));
-//
-//        statistics.setBackgroundColor((getResources().getColor(R.color.punisher_navBar)));
-//        leaderboard.setBackgroundColor((getResources().getColor(R.color.punisher_navBar)));
-//        button.setBackgroundColor((getResources().getColor(R.color.punisher_navBar)));
+        Log.i("Theme", profile.getTheme() + " ");
+        if(profile.getTheme() == 0){
+            setTheme(R.style.Evermore);
+        }
+        else if(profile.getTheme() == 1){
+            setTheme(R.style.SunsetSeason);
+        }
+        else if(profile.getTheme() == 2){
+            setTheme(R.style.Punisher);
+        }
+        else if(profile.getTheme() == 3){
+            setTheme(R.style.Multiply);
+        }
+
+        setContentView(R.layout.activity_main);
+
+
     }
     @SuppressLint("RestrictedApi")
     @Override
@@ -76,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
         
         
     }
+
+
 
     public void logCry(View v){
 
@@ -97,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.themes:
                 Intent intent2 = new Intent(this, Themes.class);
+                intent2.putExtra("profiles", profile);
                 this.startActivity(intent2);
                 return true;
             case R.id.logOut:

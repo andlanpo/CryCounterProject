@@ -33,12 +33,25 @@ public class Leaderboard extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_leaderboard);
         mAuth = FirebaseAuth.getInstance();
         dbHelper = new FireStoreHelper();
         db = FirebaseFirestore.getInstance();
         intent = getIntent();
         profile = intent.getParcelableExtra("profiles");
+        if(profile.getTheme() == 0){
+            setTheme(R.style.Evermore);
+        }
+        else if(profile.getTheme() == 1){
+            setTheme(R.style.SunsetSeason);
+        }
+        else if(profile.getTheme() == 2){
+            setTheme(R.style.Punisher);
+        }
+        else if(profile.getTheme() == 3){
+            setTheme(R.style.Multiply);
+        }
+        setContentView(R.layout.activity_leaderboard);
+
 
         leaderboardObjectArrayList = dbHelper.getLeaderboardObjects();
         leaderboardObjectArrayList = merge(leaderboardObjectArrayList);
@@ -62,6 +75,8 @@ public class Leaderboard extends AppCompatActivity {
         text9.setText("9 " + leaderboardObjectArrayList.get(8).toString());
         TextView text10 = findViewById(R.id.textView14);
         text10.setText("10 " + leaderboardObjectArrayList.get(9).toString());
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
 

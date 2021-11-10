@@ -43,10 +43,23 @@ public class LogCry extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_log_cry);
         dbHelper = new FireStoreHelper();
         Intent intent = getIntent();
         current = intent.getParcelableExtra("profiles");
+        if(current.getTheme() == 0){
+            setTheme(R.style.Evermore);
+        }
+        else if(current.getTheme() == 1){
+            setTheme(R.style.SunsetSeason);
+        }
+        else if(current.getTheme() == 2){
+            setTheme(R.style.Punisher);
+        }
+        else if(current.getTheme() == 3){
+            setTheme(R.style.Multiply);
+        }
+        setContentView(R.layout.activity_log_cry);
+
         cal = Calendar.getInstance();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             simpleDateFormat = new SimpleDateFormat("u-dd-MM-yyyy");

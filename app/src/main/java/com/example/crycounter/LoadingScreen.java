@@ -17,11 +17,13 @@ public class LoadingScreen extends AppCompatActivity {
     FireStoreHelper dbHelper;
     private FirebaseFirestore db;
     public static Profile profile;
+    public static Profile current;
     FirebaseAuth mAuth;
     Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.Default);
         setContentView(R.layout.activity_loading_screen);
         mAuth = FirebaseAuth.getInstance();
         dbHelper = new FireStoreHelper();

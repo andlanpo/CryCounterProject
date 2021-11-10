@@ -26,6 +26,7 @@ public class LogInScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.Default);
         setContentView(R.layout.activity_log_in_screen);
 
         mAuth = FirebaseAuth.getInstance();

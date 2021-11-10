@@ -28,6 +28,7 @@ public class SignUpPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.Default);
         setContentView(R.layout.activity_sign_up_page);
         dbHelper = new FireStoreHelper();
         mAuth = FirebaseAuth.getInstance();
