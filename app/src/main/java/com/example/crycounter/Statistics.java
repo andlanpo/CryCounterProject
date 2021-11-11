@@ -51,14 +51,28 @@ public class Statistics extends AppCompatActivity {
     ArrayList<String> barStressorX;
     ArrayList<Integer> barStressorValues;
     ArrayList<BarEntry> barEntries;
-
+    FireStoreHelper dbHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Add theme stuff before this line from Themes.java
-        setContentView(R.layout.activity_statistics);
+        dbHelper = new FireStoreHelper();
         Intent intent = getIntent();
         current = intent.getParcelableExtra("profiles");
+        if(current.getTheme() == 0){
+            setTheme(R.style.Evermore);
+        }
+        else if(current.getTheme() == 1){
+            setTheme(R.style.SunsetSeason);
+        }
+        else if(current.getTheme() == 2){
+            setTheme(R.style.Punisher);
+        }
+        else if(current.getTheme() == 3){
+            setTheme(R.style.Multiply);
+        }
+        setContentView(R.layout.activity_statistics);
+
         //barStressorValues = new ArrayList<Integer>();
 
         //Line chart
@@ -147,12 +161,12 @@ public class Statistics extends AppCompatActivity {
         //Initializes the bar chart
         barChart = (BarChart) findViewById(R.id.barChart);
           //Creates aan arraylist to hold all of the stressor names
-       ArrayList<String> barStressorNames = new ArrayList<String>();
-          //Adds stressor names from Firebase to arraylist
-      for (int i = 0; i < cries.size(); i++) {
-           barStressorNames.add(cries.get(i).getStressor());
-        }
-      Collections.sort(barStressorNames); //https://beginnersbook.com/2013/12/how-to-sort-arraylist-in-java/
+//       ArrayList<String> barStressorNames = new ArrayList<String>();
+//          //Adds stressor names from Firebase to arraylist
+//      for (int i = 0; i < cries.size(); i++) {
+//           barStressorNames.add(cries.get(i).getStressor());
+//        }
+//      Collections.sort(barStressorNames); //https://beginnersbook.com/2013/12/how-to-sort-arraylist-in-java/
 
 //        int numStressor = 1;
 //        String stressor = "";
@@ -202,7 +216,7 @@ public class Statistics extends AppCompatActivity {
 //        }
 
         for(int i = 0; i < listStressors.size(); i++){
-            barEntries.add(new BarEntry(listStressors.get(i).getStressorAmount(), i));
+            barEntries.add(new BarEntry(i, listStressors.get(i).getStressorAmount())); //Had the parameters switched https://www.youtube.com/watch?v=sXo2SkX7rGk
         }
         barDataSet = new BarDataSet(barEntries, "Stressors");
         barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
@@ -229,6 +243,7 @@ public class Statistics extends AppCompatActivity {
         xAxisStressor.setGranularity(1f);
         xAxisStressor.setLabelCount(barStressorX.size());
         xAxisStressor.setLabelRotationAngle(270);
+        barChart.animateY(2000);
         barChart.setTouchEnabled(true);
         barChart.getDescription().setText("Your Stressor Data");
 
