@@ -36,8 +36,6 @@ public class Themes extends AppCompatActivity {
         }
         setContentView(R.layout.activity_themes);
 
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     public void goBack(View v){
