@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -52,6 +53,8 @@ public class Statistics extends AppCompatActivity {
     ArrayList<Integer> barStressorValues;
     ArrayList<BarEntry> barEntries;
     FireStoreHelper dbHelper;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,17 +62,32 @@ public class Statistics extends AppCompatActivity {
         dbHelper = new FireStoreHelper();
         Intent intent = getIntent();
         current = intent.getParcelableExtra("profiles");
+        TextView text4 = findViewById(R.id.likelyHour);
+        TextView text5 = findViewById(R.id.likelyDay);
+        TextView text6 = findViewById(R.id.likelyLocation);
         if(current.getTheme() == 0){
             setTheme(R.style.Evermore);
+//            text4.setTextColor(Color.parseColor("#ffffff"));
+//            text5.setTextColor(Color.parseColor("#ffffff"));
+//            text6.setTextColor(Color.parseColor("#ffffff"));
         }
         else if(current.getTheme() == 1){
             setTheme(R.style.SunsetSeason);
+//            text4.setTextColor(Color.parseColor("#ffffff"));
+//            text5.setTextColor(Color.parseColor("#ffffff"));
+//            text6.setTextColor(Color.parseColor("#ffffff"));
         }
         else if(current.getTheme() == 2){
             setTheme(R.style.Punisher);
+//            text4.setTextColor(Color.parseColor("#ffffff"));
+//            text5.setTextColor(Color.parseColor("#ffffff"));
+//            text6.setTextColor(Color.parseColor("#ffffff"));
         }
         else if(current.getTheme() == 3){
             setTheme(R.style.Multiply);
+//            text4.setTextColor(Color.parseColor("#ffffff"));
+//            text5.setTextColor(Color.parseColor("#ffffff"));
+//            text6.setTextColor(Color.parseColor("#ffffff"));
         }
         setContentView(R.layout.activity_statistics);
 
@@ -146,6 +164,7 @@ public class Statistics extends AppCompatActivity {
         lineData = new LineData(lineDataSet);
         lineChart.setData(lineData);
         lineChart.getDescription().setText("Your Cry Data");
+        lineChart.animateY(1500);
         lineChart.setVisibleXRangeMaximum(10);
         lineChart.invalidate();
 
@@ -220,7 +239,7 @@ public class Statistics extends AppCompatActivity {
         }
         barDataSet = new BarDataSet(barEntries, "Stressors");
         barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
-        barDataSet.setValueTextColor(Color.BLACK);
+        barDataSet.setValueTextColor(Color.WHITE);
         barDataSet.setValueTextSize(16f);
         barStressorX = new ArrayList<String>();
         for(int i =0; i < listStressors.size(); i++){
@@ -243,7 +262,8 @@ public class Statistics extends AppCompatActivity {
         xAxisStressor.setGranularity(1f);
         xAxisStressor.setLabelCount(barStressorX.size());
         xAxisStressor.setLabelRotationAngle(270);
-        barChart.animateY(2000);
+        xAxisStressor.setAxisLineColor(300);
+        barChart.animateY(1500);
         barChart.setTouchEnabled(true);
         barChart.getDescription().setText("Your Stressor Data");
 
@@ -282,11 +302,11 @@ public class Statistics extends AppCompatActivity {
             }
         }
         for(int i = 0; i < listLocations.size(); i++){
-            barEntriesLocations.add(new BarEntry(listLocations.get(i).getStressorAmount(), i));
+            barEntriesLocations.add(new BarEntry(i,listLocations.get(i).getStressorAmount()));
         }
         barDataSetLocation = new BarDataSet(barEntriesLocations, "Locations");
         barDataSetLocation.setColors(ColorTemplate.MATERIAL_COLORS);
-        barDataSetLocation.setValueTextColor(Color.BLACK);
+        barDataSetLocation.setValueTextColor(Color.WHITE);
         barDataSetLocation.setValueTextSize(16f);
         barLocationX = new ArrayList<String>();
         for(int i =0; i < listLocations.size(); i++){
@@ -304,6 +324,7 @@ public class Statistics extends AppCompatActivity {
         xAxisLocation.setLabelCount(barLocationX.size());
         xAxisLocation.setLabelRotationAngle(270);
         barChartLocation.setTouchEnabled(true);
+        barChartLocation.animateY(1500);
         barChartLocation.getDescription().setText("Your Location Data");
         barChartLocation.getAxisLeft().setAxisMinimum(0);
         barChartLocation.getAxisRight().setAxisMinimum(0);

@@ -8,9 +8,9 @@
     android:fillViewport="true">
 <androidx.appcompat.widget.LinearLayoutCompat
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginTop="20dp"
-    android:layout_marginBottom="30dp"
+    android:layout_marginBottom="20dp"
     android:layout_marginLeft="40dp"
     android:orientation="vertical"
     tools:context=".Statistics">
@@ -37,21 +37,27 @@
 </com.github.mikephil.charting.charts.BarChart>
 -->
 
-        <TextView
-            android:id="@+id/likelyHour"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:text="TextView" />
-        <TextView
-            android:id="@+id/likelyDay"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:text="TextView" />
-        <TextView
-            android:id="@+id/likelyLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:text="TextView" />
+    <TextView
+        android:id="@+id/likelyHour"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="TextView"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/likelyDay"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="TextView"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/likelyLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginBottom="100dp"
+        android:text="TextView"
+        android:textSize="18sp" />
 
 
 
