@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,6 +31,10 @@ public class SignUpProfile extends AppCompatActivity {
     private ArrayList<String> locations = new ArrayList<>();
     private FireStoreHelper dbHelper;
     public static Profile current;
+    RadioGroup radioGroupPrivacy;
+    RadioButton privacyButton;
+    RadioGroup moreLess;
+    RadioButton amount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,30 +50,13 @@ public class SignUpProfile extends AppCompatActivity {
         EditText lastNameField = (EditText) findViewById(R.id.editLastName);
         lastNameField.setText(current.getLastName());
 
+        radioGroupPrivacy = findViewById(R.id.visibilityGroup);
+        moreLess = findViewById(R.id.moreLessGroup);
+
+
 
     }
 
-    public void onRadioButtonClicked(View v){
-        switch(v.getId())
-        {
-            case R.id.cryLess:
-                moreOrLess = true;
-                //
-                break;
-            case R.id.cryMore:
-                //
-                moreOrLess = false;
-                break;
-            case R.id.showCry:
-                //
-                privacy = false;
-                break;
-            case R.id.noShowCry:
-                //
-                privacy = true;
-                break;
-        }
-    }
 
     public void addStressor(View v){
         EditText stressorText = (EditText)findViewById(R.id.addStressor);
@@ -110,6 +99,22 @@ public class SignUpProfile extends AppCompatActivity {
             profileRef.update("stressors", FieldValue.arrayUnion(f));
 
         }
+        privacyButton = findViewById(radioGroupPrivacy.getCheckedRadioButtonId());
+        amount = findViewById(moreLess.getCheckedRadioButtonId());
+
+        if(privacyButton.equals(findViewById(R.id.showCry))){
+            privacy = false;
+        }
+        else{
+            privacy = true;
+        }
+        if(amount.equals(findViewById(R.id.cryMore))){
+            moreOrLess = true;
+        }
+        else{
+            moreOrLess = false;
+        }
+
         profileRef.update("firstName", firstName);
         profileRef.update("lastName", lastName);
         profileRef.update("privacy", privacy);

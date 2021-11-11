@@ -42,33 +42,45 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.035" />
 
-    <RadioButton
-        android:id="@+id/cryLess"
+    <RadioGroup
         android:layout_width="wrap_content"
+        android:id="@+id/moreLessGroup"
         android:layout_height="wrap_content"
-        android:onClick="onRadioButtonClicked"
-        android:text="Cry Less"
-        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="horizontal"
         app:layout_constraintHorizontal_bias="0.418"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.209" />
+        app:layout_constraintVertical_bias="0.209" >
+        <RadioButton
+            android:id="@+id/cryLess"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cry Less"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.418"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.209" />
 
-    <RadioButton
-        android:id="@+id/cryMore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onRadioButtonClicked"
-        android:text="Cry More"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.054"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.21" />
+        <RadioButton
+            android:id="@+id/cryMore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cry More"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.054"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.21" />
+    </RadioGroup>
+
+
 
     <TextView
         android:id="@+id/askMoreOrLess"
@@ -82,34 +94,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.145" />
-
-    <RadioButton
-        android:id="@+id/showCry"
+    <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onRadioButtonClicked"
-        android:text="Share Your Cry Data"
-        android:textSize="12sp"
+        android:id="@+id/visibilityGroup"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.059"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.396" />
+        app:layout_constraintVertical_bias="0.396"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/showCry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Share Your Cry Data"
+            android:textSize="12sp"
+             />
 
-    <RadioButton
-        android:id="@+id/noShowCry"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onRadioButtonClicked"
-        android:text="Don't share your cry data"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.767"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.396" />
+        <RadioButton
+            android:id="@+id/noShowCry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don't share your cry data"
+            android:textSize="12sp"
+             />
+    </RadioGroup>
+
 
     <TextView
         android:id="@+id/textView2"
