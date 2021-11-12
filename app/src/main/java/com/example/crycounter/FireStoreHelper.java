@@ -33,12 +33,7 @@ import java.util.Map;
 public class FireStoreHelper {
     private final FirebaseFirestore db;         // ref to entire database
     private CollectionReference profileRef;  // ref to profile collection only
-
-
-    // arraylist of all profiles in database
-    public static ArrayList<Profile> profileArrayList = new ArrayList<>();
     FirebaseAuth mAuth;
-    public static Profile current;
     public static ArrayList<LeaderboardObject> leaderboardObjects = new ArrayList<>();
 
 
@@ -51,7 +46,6 @@ public class FireStoreHelper {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                 // clear out the array list so that none of the events are duplicated in the display
-                profileArrayList.clear();
                 leaderboardObjects.clear();
                 Log.i("andrew", "change made to data");
                 // this for each loop will get each Document Snapshot from the query, and one at a time,
@@ -59,7 +53,6 @@ public class FireStoreHelper {
 
                 for (QueryDocumentSnapshot doc : value) {
                     Profile profile = doc.toObject(Profile.class);
-                    profileArrayList.add(profile);
                     if(!(profile.isPrivacy())){
                         LeaderboardObject currentLeader = new LeaderboardObject(profile.getFirstName(),
                                 profile.getLastName(), profile.getCries().size());
@@ -67,7 +60,6 @@ public class FireStoreHelper {
                     }
 
                 }
-                Log.i("Andrew", profileArrayList.toString());
             }
         });
     }
