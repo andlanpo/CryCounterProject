@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -35,11 +36,28 @@ public class SignUpProfile extends AppCompatActivity {
     RadioButton privacyButton;
     RadioGroup moreLess;
     RadioButton amount;
+    SharedPreferences sharedPreferences;
+    public static final String THEME_VAL = "THEME";
+
+    private int theme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(R.style.Default);
+        sharedPreferences = getSharedPreferences("THEME_PREF",MODE_PRIVATE);
+        theme = sharedPreferences.getInt(THEME_VAL, 0);
+        if(theme == 0){
+            setTheme(R.style.Evermore);
+        }
+        else if(theme == 1){
+            setTheme(R.style.SunsetSeason);
+        }
+        else if(theme == 2){
+            setTheme(R.style.Punisher);
+        }
+        else if(theme == 3){
+            setTheme(R.style.Multiply);
+        }
         setContentView(R.layout.activity_sign_up_profile);
         dbHelper = new FireStoreHelper();
         db = FirebaseFirestore.getInstance();

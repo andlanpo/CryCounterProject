@@ -13,9 +13,6 @@
             android:name=".LoadingScreen"
             android:exported="true" />
         <activity
-            android:name=".EntryString"
-            android:exported="true" />
-        <activity
             android:name=".SignUpProfile"
             android:exported="true" />
         <activity

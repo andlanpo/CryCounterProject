@@ -6,6 +6,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -34,9 +35,11 @@ public class MainActivity extends AppCompatActivity {
     FireStoreHelper dbHelper;
     private FirebaseFirestore db;
     public static Profile profile;
-    ArrayList<String> locations = new ArrayList<String>();
-    ArrayList<String> stressors = new ArrayList<String>();
     FirebaseAuth mAuth;
+    SharedPreferences sharedPreferences;
+    public static final String THEME_VAL = "THEME";
+
+    private int theme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,17 +49,18 @@ public class MainActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         Intent intent = getIntent();
         profile = intent.getParcelableExtra("profiles");
-        Log.i("Theme", profile.getTheme() + " ");
-        if(profile.getTheme() == 0){
+        sharedPreferences = getSharedPreferences("THEME_PREF",MODE_PRIVATE);
+        theme = sharedPreferences.getInt(THEME_VAL, 0);
+        if(theme == 0){
             setTheme(R.style.Evermore);
         }
-        else if(profile.getTheme() == 1){
+        else if(theme == 1){
             setTheme(R.style.SunsetSeason);
         }
-        else if(profile.getTheme() == 2){
+        else if(theme == 2){
             setTheme(R.style.Punisher);
         }
-        else if(profile.getTheme() == 3){
+        else if(theme == 3){
             setTheme(R.style.Multiply);
         }
 
@@ -141,11 +145,5 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void displayALocation(View v){
-        locations = profile.getLocations();
-        stressors = profile.getStressors();
-        Toast.makeText(getApplicationContext(),profile.getLocations().get(0) ,Toast.LENGTH_SHORT).show();
-
-    }
 
 }

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,13 +21,32 @@ import com.google.firebase.auth.FirebaseUser;
 public class LogInScreen extends AppCompatActivity {
     EditText emailET, passwordET;
     TextView authStatusTV;
+    SharedPreferences sharedPreferences;
+    // https://www.youtube.com/watch?v=jiD2fxn8iKA
+    // sharedPreferences
+    public static final String THEME_VAL = "THEME";
+
+    private int theme;
 
     private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(R.style.Default);
+        sharedPreferences = getSharedPreferences("THEME_PREF",MODE_PRIVATE);
+        theme = sharedPreferences.getInt(THEME_VAL, 0);
+        if(theme == 0){
+            setTheme(R.style.Evermore);
+        }
+        else if(theme == 1){
+            setTheme(R.style.SunsetSeason);
+        }
+        else if(theme == 2){
+            setTheme(R.style.Punisher);
+        }
+        else if(theme == 3){
+            setTheme(R.style.Multiply);
+        }
         setContentView(R.layout.activity_log_in_screen);
 
         mAuth = FirebaseAuth.getInstance();
