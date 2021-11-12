@@ -83,32 +83,33 @@ public class Statistics extends AppCompatActivity {
         TextView text4 = findViewById(R.id.likelyHour);
         TextView text5 = findViewById(R.id.likelyDay);
         TextView text6 = findViewById(R.id.likelyLocation);
-        if(current.getTheme() == 0){
-            setTheme(R.style.Evermore);
+       // if(current.getTheme() == 0){                  I used shared preferences at the top of this instead of current.getTheme(),
+                                                        //so you can take this out if you want
+           // setTheme(R.style.Evermore);
 //            text4.setTextColor(Color.parseColor("#ffffff"));
 //            text5.setTextColor(Color.parseColor("#ffffff"));
 //            text6.setTextColor(Color.parseColor("#ffffff"));
-        }
-        else if(current.getTheme() == 1){
-            setTheme(R.style.SunsetSeason);
+    //    }
+       // else if(current.getTheme() == 1){
+           // setTheme(R.style.SunsetSeason);
 //            text4.setTextColor(Color.parseColor("#ffffff"));
 //            text5.setTextColor(Color.parseColor("#ffffff"));
 //            text6.setTextColor(Color.parseColor("#ffffff"));
-        }
-        else if(current.getTheme() == 2){
-            setTheme(R.style.Punisher);
+      //  }
+        //else if(current.getTheme() == 2){
+           // setTheme(R.style.Punisher);
 //            text4.setTextColor(Color.parseColor("#ffffff"));
 //            text5.setTextColor(Color.parseColor("#ffffff"));
 //            text6.setTextColor(Color.parseColor("#ffffff"));
-        }
-        else if(current.getTheme() == 3){
-            setTheme(R.style.Multiply);
+     //   }
+       // else if(current.getTheme() == 3){
+           // setTheme(R.style.Multiply);
 //            text4.setTextColor(Color.parseColor("#ffffff"));
 //            text5.setTextColor(Color.parseColor("#ffffff"));
 //            text6.setTextColor(Color.parseColor("#ffffff"));
-        }
+        //}
         setContentView(R.layout.activity_statistics);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //barStressorValues = new ArrayList<Integer>();
 
         //Line chart
