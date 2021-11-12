@@ -21,13 +21,12 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class SignUpPage extends AppCompatActivity {
     EditText emailET, passwordET;
-
     private FireStoreHelper dbHelper;
     SharedPreferences sharedPreferences;
     public static final String THEME_VAL = "THEME";
-
     private int theme;
     private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

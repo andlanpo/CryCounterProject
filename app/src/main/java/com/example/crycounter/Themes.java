@@ -12,33 +12,38 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
-import com.google.firebase.firestore.FirebaseFirestore;
-
 public class Themes extends AppCompatActivity {
-    public static final String SHARED_PREFS = "sharedPrefs";
     public static final String THEME_VAL = "THEME";
     FireStoreHelper dbHelper;
     public static Profile profile;
+    SharedPreferences sharedPreferences;
+    private int theme;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         dbHelper = new FireStoreHelper();
+
         Intent intent = getIntent();
         profile = intent.getParcelableExtra("profiles");
-        if(profile.getTheme() == 0){
+
+
+        sharedPreferences = getSharedPreferences("THEME_PREF",MODE_PRIVATE);
+        theme = sharedPreferences.getInt(THEME_VAL, 0);
+        if(theme == 0){
             setTheme(R.style.Evermore);
         }
-        else if(profile.getTheme() == 1){
+        else if(theme == 1){
             setTheme(R.style.SunsetSeason);
         }
-        else if(profile.getTheme() == 2){
+        else if(theme == 2){
             setTheme(R.style.Punisher);
         }
-        else if(profile.getTheme() == 3){
+        else if(theme == 3){
             setTheme(R.style.Multiply);
         }
         setContentView(R.layout.activity_themes);
-
     }
 
     public void goBack(View v){
@@ -49,14 +54,11 @@ public class Themes extends AppCompatActivity {
 
     public void setTheme0(View v){
         dbHelper.setTheme(0);
+
         SharedPreferences sharedPreferences = getSharedPreferences("THEME_PREF",MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();;
-
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(THEME_VAL, 0);
-
         editor.apply();
-
-
 
         ConstraintLayout constraintLayout = findViewById(R.id.ThemeLayout);
         Button sunsetSeason = findViewById(R.id.sunsetSeasonTheme);
@@ -64,8 +66,6 @@ public class Themes extends AppCompatActivity {
         Button evermore = findViewById(R.id.evermoreTheme);
         Button multiply = findViewById(R.id.multiplyTheme);
         Button goBack = findViewById(R.id.goBack);
-
-
 
         constraintLayout.setBackgroundColor(getResources().getColor(R.color.evermore_background));
 
@@ -84,10 +84,8 @@ public class Themes extends AppCompatActivity {
         dbHelper.setTheme(1);
 
         SharedPreferences sharedPreferences = getSharedPreferences("THEME_PREF",MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();;
-
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(THEME_VAL, 1);
-
         editor.apply();
 
         ConstraintLayout constraintLayout = findViewById(R.id.ThemeLayout);
@@ -115,12 +113,9 @@ public class Themes extends AppCompatActivity {
         dbHelper.setTheme(2);
 
         SharedPreferences sharedPreferences = getSharedPreferences("THEME_PREF",MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();;
-
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(THEME_VAL, 2);
-
         editor.apply();
-
 
         ConstraintLayout constraintLayout = findViewById(R.id.ThemeLayout);
         Button sunsetSeason = findViewById(R.id.sunsetSeasonTheme);
@@ -146,12 +141,9 @@ public class Themes extends AppCompatActivity {
         dbHelper.setTheme(3);
 
         SharedPreferences sharedPreferences = getSharedPreferences("THEME_PREF",MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();;
-
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(THEME_VAL, 3);
-
         editor.apply();
-
 
         ConstraintLayout constraintLayout = findViewById(R.id.ThemeLayout);
         Button sunsetSeason = findViewById(R.id.sunsetSeasonTheme);

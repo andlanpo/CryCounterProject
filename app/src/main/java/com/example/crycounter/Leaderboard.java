@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -25,36 +26,41 @@ import java.util.Collections;
 
 public class Leaderboard extends AppCompatActivity {
     FireStoreHelper dbHelper;
-    private FirebaseFirestore db;
     public static Profile profile;
     FirebaseAuth mAuth;
     Intent intent;
     ArrayList<LeaderboardObject> leaderboardObjectArrayList = new ArrayList<>();
+    SharedPreferences sharedPreferences;
+    public static final String THEME_VAL = "THEME";
+    private int theme;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
         dbHelper = new FireStoreHelper();
-        db = FirebaseFirestore.getInstance();
         intent = getIntent();
-        profile = intent.getParcelableExtra("profiles");
-        if(profile.getTheme() == 0){
+        leaderboardObjectArrayList = dbHelper.getLeaderboardObjects();
+        leaderboardObjectArrayList = merge(leaderboardObjectArrayList);
+
+        sharedPreferences = getSharedPreferences("THEME_PREF",MODE_PRIVATE);
+        theme = sharedPreferences.getInt(THEME_VAL, 0);
+        if(theme == 0){
             setTheme(R.style.Evermore);
         }
-        else if(profile.getTheme() == 1){
+        else if(theme == 1){
             setTheme(R.style.SunsetSeason);
         }
-        else if(profile.getTheme() == 2){
+        else if(theme == 2){
             setTheme(R.style.Punisher);
         }
-        else if(profile.getTheme() == 3){
+        else if(theme == 3){
             setTheme(R.style.Multiply);
         }
         setContentView(R.layout.activity_leaderboard);
 
 
-        leaderboardObjectArrayList = dbHelper.getLeaderboardObjects();
-        leaderboardObjectArrayList = merge(leaderboardObjectArrayList);
+
         TextView text1 = findViewById(R.id.textView5);
         text1.setText("1\t" + leaderboardObjectArrayList.get(0).toString());
         TextView text2 = findViewById(R.id.textView7);
@@ -77,9 +83,6 @@ public class Leaderboard extends AppCompatActivity {
         text10.setText("10\t" + leaderboardObjectArrayList.get(9).toString());
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
-
     }
 
 
@@ -102,11 +105,9 @@ public class Leaderboard extends AppCompatActivity {
         ArrayList<LeaderboardObject> rest;
         int restIndex;
         if (leftIndex >= left.size()) {
-            // The left ArrayList has been use up...
             rest = right;
             restIndex = rightIndex;
         } else {
-            // The right ArrayList has been used up...
             rest = left;
             restIndex = leftIndex;
         }

@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     SharedPreferences sharedPreferences;
     public static final String THEME_VAL = "THEME";
-
     private int theme;
 
     @Override
@@ -66,8 +65,8 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        TextView cryCount = findViewById(R.id.cryCount);
-        cryCount.setText("Cry Count:\n  " + profile.getCries().size() + " Cries");
+        TextView cryCount = findViewById(R.id.textView16);
+        cryCount.setText(profile.getCries().size() + " Cries");
 
 
     }

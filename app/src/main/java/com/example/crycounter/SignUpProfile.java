@@ -44,6 +44,12 @@ public class SignUpProfile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        dbHelper = new FireStoreHelper();
+        db = FirebaseFirestore.getInstance();
+        Intent intent = getIntent();
+        current = intent.getParcelableExtra("profiles");
+
         sharedPreferences = getSharedPreferences("THEME_PREF",MODE_PRIVATE);
         theme = sharedPreferences.getInt(THEME_VAL, 0);
         if(theme == 0){
@@ -59,14 +65,12 @@ public class SignUpProfile extends AppCompatActivity {
             setTheme(R.style.Multiply);
         }
         setContentView(R.layout.activity_sign_up_profile);
-        dbHelper = new FireStoreHelper();
-        db = FirebaseFirestore.getInstance();
-        Intent intent = getIntent();
-        current = intent.getParcelableExtra("profiles");
+
         EditText firstNameField = (EditText) findViewById(R.id.editFirstName);
         firstNameField.setText(current.getFirstName());
         EditText lastNameField = (EditText) findViewById(R.id.editLastName);
         lastNameField.setText(current.getLastName());
+
 
         radioGroupPrivacy = findViewById(R.id.visibilityGroup);
         moreLess = findViewById(R.id.moreLessGroup);
@@ -83,19 +87,17 @@ public class SignUpProfile extends AppCompatActivity {
         else{
             moreLess.check(R.id.cryLess);
         }
-
-
-
-
     }
 
 
     public void addStressor(View v){
         EditText stressorText = (EditText)findViewById(R.id.addStressor);
         String stressor = stressorText.getText().toString();
+
         if(stressor.length() == 0){
             stressorText.setError("Field cannot be left blank.");
         }
+
         stressors.add(stressor);
         Toast.makeText(getApplicationContext(),"Added successfully",Toast.LENGTH_SHORT).show();
         stressorText.setHint("Stressor");
@@ -104,11 +106,14 @@ public class SignUpProfile extends AppCompatActivity {
     public void addLocation(View v){
         EditText locationText = (EditText)findViewById(R.id.addLocation);
         String location = locationText.getText().toString();
+
         if(location.length() == 0){
             locationText.setError("Field cannot be left blank.");
         }
+
         locations.add(location);
         Toast.makeText(getApplicationContext(),"Added successfully",Toast.LENGTH_SHORT).show();
+        locationText.setHint("Location");
     }
 
 
@@ -131,6 +136,7 @@ public class SignUpProfile extends AppCompatActivity {
             profileRef.update("stressors", FieldValue.arrayUnion(f));
 
         }
+
         privacyButton = findViewById(radioGroupPrivacy.getCheckedRadioButtonId());
         amount = findViewById(moreLess.getCheckedRadioButtonId());
 
@@ -140,6 +146,7 @@ public class SignUpProfile extends AppCompatActivity {
         else{
             privacy = true;
         }
+
         if(amount.equals(findViewById(R.id.cryMore))){
             moreOrLess = true;
         }
@@ -154,21 +161,5 @@ public class SignUpProfile extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),"Saved Profile",Toast.LENGTH_SHORT).show();
         Intent intent1 = new Intent(this, LoadingScreen.class);
         this.startActivity(intent1);
-
-
-
-    }
-    /**
-     * This method will be called to minimize the on screen keyboard in the Activity
-     * When we get the current view, it is the view that has focus, which is the keyboard
-     *
-     * Source:  https://www.youtube.com/watch?v=CW5Xekqfx3I
-     */
-    private void closeKeyboard() {
-        View view = this.getCurrentFocus();     // view will refer to the keyboard
-        if (view != null ){                     // if there is a view that has focus
-            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
     }
 }

@@ -2,6 +2,7 @@ package com.example.crycounter;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
+import android.os.Build;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -26,7 +27,9 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Map;
 
@@ -35,12 +38,22 @@ public class FireStoreHelper {
     private CollectionReference profileRef;  // ref to profile collection only
     FirebaseAuth mAuth;
     public static ArrayList<LeaderboardObject> leaderboardObjects = new ArrayList<>();
+//    Calendar cal;
+//    SimpleDateFormat simpleDateFormat;
+//    private int dayOfMonth;
 
 
     public FireStoreHelper() {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         profileRef = db.collection("profiles");
+//        cal = Calendar.getInstance();
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//            simpleDateFormat = new SimpleDateFormat("dd");
+//        }
+//        String date = simpleDateFormat.format(cal.getTime());
+//        dayOfMonth = Integer.parseInt(date);
+
 
         profileRef.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override

@@ -9,6 +9,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -37,6 +38,10 @@ public class LogCry extends AppCompatActivity {
     private int hour;
     private int minute;
     String time;
+    SharedPreferences sharedPreferences;
+    public static final String THEME_VAL = "THEME";
+    private int theme;
+
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -46,16 +51,18 @@ public class LogCry extends AppCompatActivity {
         dbHelper = new FireStoreHelper();
         Intent intent = getIntent();
         current = intent.getParcelableExtra("profiles");
-        if(current.getTheme() == 0){
+        sharedPreferences = getSharedPreferences("THEME_PREF",MODE_PRIVATE);
+        theme = sharedPreferences.getInt(THEME_VAL, 0);
+        if(theme == 0){
             setTheme(R.style.Evermore);
         }
-        else if(current.getTheme() == 1){
+        else if(theme == 1){
             setTheme(R.style.SunsetSeason);
         }
-        else if(current.getTheme() == 2){
+        else if(theme == 2){
             setTheme(R.style.Punisher);
         }
-        else if(current.getTheme() == 3){
+        else if(theme == 3){
             setTheme(R.style.Multiply);
         }
         setContentView(R.layout.activity_log_cry);

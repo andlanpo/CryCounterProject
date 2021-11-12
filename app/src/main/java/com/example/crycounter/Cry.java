@@ -19,6 +19,72 @@ public class Cry implements Parcelable{
     private int dayOfMonth;
     private int month;
 
+    public static final Creator<Cry> CREATOR = new Creator<Cry>() {
+        @Override
+        public Cry createFromParcel(Parcel source) {
+            return new Cry(source);
+        }
+
+        @Override
+        public Cry[] newArray(int size) {
+            return new Cry[size];
+        }
+    };
+
+    public Cry(int a, int b, int c, int d, int e, int f, String l, String s){
+        hour = a;
+        minute = b;
+        dayOfWeek = c;
+        dayOfMonth = d;
+        month = e;
+        year = f;
+        location = l;
+        stressor = s;
+    }
+
+    protected Cry(Parcel in) {
+        this.location = in.readString();
+        this.stressor = in.readString();
+        this.hour = in.readInt();
+        this.minute = in.readInt();
+        this.dayOfWeek = in.readInt();
+        this.year = in.readInt();
+        this.dayOfMonth = in.readInt();
+        this.month = in.readInt();
+    }
+
+    public Cry() {
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.location);
+        dest.writeString(this.stressor);
+        dest.writeInt(this.hour);
+        dest.writeInt(this.minute);
+        dest.writeInt(this.dayOfWeek);
+        dest.writeInt(this.year);
+        dest.writeInt(this.dayOfMonth);
+        dest.writeInt(this.month);
+    }
+
+    public void readFromParcel(Parcel source) {
+        this.location = source.readString();
+        this.stressor = source.readString();
+        this.hour = source.readInt();
+        this.minute = source.readInt();
+        this.dayOfWeek = source.readInt();
+        this.year = source.readInt();
+        this.dayOfMonth = source.readInt();
+        this.month = source.readInt();
+    }
+
     public String getLocation() {
         return location;
     }
@@ -82,69 +148,4 @@ public class Cry implements Parcelable{
     public void setMonth(int month) {
         this.month = month;
     }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.location);
-        dest.writeString(this.stressor);
-        dest.writeInt(this.hour);
-        dest.writeInt(this.minute);
-        dest.writeInt(this.dayOfWeek);
-        dest.writeInt(this.year);
-        dest.writeInt(this.dayOfMonth);
-        dest.writeInt(this.month);
-    }
-
-    public void readFromParcel(Parcel source) {
-        this.location = source.readString();
-        this.stressor = source.readString();
-        this.hour = source.readInt();
-        this.minute = source.readInt();
-        this.dayOfWeek = source.readInt();
-        this.year = source.readInt();
-        this.dayOfMonth = source.readInt();
-        this.month = source.readInt();
-    }
-
-    public Cry() {
-    }
-
-    public Cry(int a, int b, int c, int d, int e, int f, String l, String s){
-        hour = a;
-        minute = b;
-        dayOfWeek = c;
-        dayOfMonth = d;
-        month = e;
-        year = f;
-        location = l;
-        stressor = s;
-    }
-
-    protected Cry(Parcel in) {
-        this.location = in.readString();
-        this.stressor = in.readString();
-        this.hour = in.readInt();
-        this.minute = in.readInt();
-        this.dayOfWeek = in.readInt();
-        this.year = in.readInt();
-        this.dayOfMonth = in.readInt();
-        this.month = in.readInt();
-    }
-
-    public static final Creator<Cry> CREATOR = new Creator<Cry>() {
-        @Override
-        public Cry createFromParcel(Parcel source) {
-            return new Cry(source);
-        }
-
-        @Override
-        public Cry[] newArray(int size) {
-            return new Cry[size];
-        }
-    };
 }
