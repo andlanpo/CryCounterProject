@@ -3,6 +3,7 @@ package com.example.crycounter;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Pair;
@@ -53,11 +54,28 @@ public class Statistics extends AppCompatActivity {
     ArrayList<Integer> barStressorValues;
     ArrayList<BarEntry> barEntries;
     FireStoreHelper dbHelper;
+    SharedPreferences sharedPreferences;
+    public static final String THEME_VAL = "THEME";
 
+    private int theme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferences = getSharedPreferences("THEME_PREF",MODE_PRIVATE);
+        theme = sharedPreferences.getInt(THEME_VAL, 0);
+        if(theme == 0){
+            setTheme(R.style.Evermore);
+        }
+        else if(theme == 1){
+            setTheme(R.style.SunsetSeason);
+        }
+        else if(theme == 2){
+            setTheme(R.style.Punisher);
+        }
+        else if(theme == 3){
+            setTheme(R.style.Multiply);
+        }
         //Add theme stuff before this line from Themes.java
         dbHelper = new FireStoreHelper();
         Intent intent = getIntent();
@@ -359,7 +377,12 @@ public class Statistics extends AppCompatActivity {
             index++;
         }
         TextView text4 = findViewById(R.id.likelyHour);
-        text4.setText("you are most likely to cry at " + hour);
+        if(hour > 12){
+            text4.setText("The time you cry the most is: \n " + hour + "PM");
+        }
+        else{
+            text4.setText("The time you cry the most is: \n " + hour + "AM");
+        }
 
     }
 
@@ -388,7 +411,7 @@ public class Statistics extends AppCompatActivity {
             index++;
         }
         TextView text5 = findViewById(R.id.likelyDay);
-        text5.setText("you are most likely to cry at " + stressor);
+        text5.setText("Your biggest stressor is: \n" + stressor);
 
     }
 
@@ -417,7 +440,7 @@ public class Statistics extends AppCompatActivity {
             index++;
         }
         TextView text6 = findViewById(R.id.likelyLocation);
-        text6.setText("you are most likely to cry at " + location);
+        text6.setText("You cry the most at: \n" + location);
 
     }
 
