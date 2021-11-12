@@ -70,6 +70,20 @@ public class SignUpProfile extends AppCompatActivity {
 
         radioGroupPrivacy = findViewById(R.id.visibilityGroup);
         moreLess = findViewById(R.id.moreLessGroup);
+        if(current.isPrivacy()){
+            radioGroupPrivacy.check(R.id.noShowCry);
+        }
+        else{
+            radioGroupPrivacy.check(R.id.showCry);
+        }
+
+        if(current.isMoreOrLess()){
+            moreLess.check(R.id.cryMore);
+        }
+        else{
+            moreLess.check(R.id.cryLess);
+        }
+
 
 
 

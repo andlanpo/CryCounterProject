@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LogInScreen extends AppCompatActivity {
     EditText emailET, passwordET;
-    TextView authStatusTV;
+
     SharedPreferences sharedPreferences;
     // https://www.youtube.com/watch?v=jiD2fxn8iKA
     // sharedPreferences
@@ -53,26 +53,20 @@ public class LogInScreen extends AppCompatActivity {
 
         emailET = findViewById(R.id.logInEmail);
         passwordET = findViewById(R.id.logInPassword);
-        authStatusTV = findViewById(R.id.authStatusView);
 
     }
-
-    @Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            authStatusTV.setText("onStart reloaded and " + currentUser.getEmail() + " is logged in");
             // Take any action needed here when screen loads and a user is logged in
             Intent intent = new Intent(LogInScreen.this, LoadingScreen.class);
             startActivity(intent);
         }
-        else {
-            authStatusTV.setText("onStart reloaded and user is null");
-            // Take any action needed here when screen loads and a user is NOT logged in
-        }
     }
+
+
 
     public void handleAuthChange(View v) {
         String email = emailET.getText().toString();
@@ -92,12 +86,11 @@ public class LogInScreen extends AppCompatActivity {
                             startActivity(intent);
                             Log.i("Denna", "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            authStatusTV.setText("Signed in " + user.getEmail());
 
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.i("Denna", "signInWithEmail:failure", task.getException());
-                            Toast.makeText(LogInScreen.this, "Authentication failed.",
+                            Toast.makeText(LogInScreen.this, "Log In failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
