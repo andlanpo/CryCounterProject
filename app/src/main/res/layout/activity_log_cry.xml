@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,37 +13,68 @@
         android:id="@+id/whyCry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="129dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="130dp"
+        android:fontFamily="sans-serif-medium"
         android:text="Why did you cry?"
-        tools:layout_editor_absoluteX="14dp"
-        tools:layout_editor_absoluteY="85dp" />
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/locations" />
+
     <Spinner
         android:id="@+id/stressors"
         android:layout_width="268dp"
         android:layout_height="49dp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="105dp" />
+        android:layout_marginStart="71dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="72dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/whyCry" />
 
     <TextView
         android:id="@+id/whereCry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="121dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="120dp"
+        android:fontFamily="sans-serif-medium"
         android:text="Where did you cry?"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="8dp" />
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Spinner
         android:id="@+id/locations"
         android:layout_width="268dp"
         android:layout_height="49dp"
-        tools:layout_editor_absoluteX="14dp"
-        tools:layout_editor_absoluteY="28dp" />
+        android:layout_marginStart="71dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="72dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/whereCry" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="120dp"
+        android:layout_marginHorizontal="100dp"
+        android:layout_marginStart="131dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginEnd="130dp"
+        android:layout_marginBottom="140dp"
         android:onClick="submit"
-        android:text="Log Cry" />
+        android:text="Log Cry"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stressors" />
 
 
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

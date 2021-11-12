@@ -9,70 +9,72 @@
 
     <Button
         android:id="@+id/goBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="159dp"
-        android:layout_marginTop="192dp"
-        android:layout_marginEnd="158dp"
-        android:layout_marginBottom="363dp"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="141dp"
+        android:layout_marginEnd="141dp"
+        android:layout_marginBottom="50dp"
         android:onClick="goBack"
-        android:text="Button"
+        android:text="Apply Theme"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/evermoreTheme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="71dp"
-        android:layout_marginEnd="119dp"
-        android:layout_marginBottom="484dp"
+        android:layout_width="120dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="44dp"
         android:onClick="setTheme0"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/sunsetSeasonTheme"
+        android:text="Theme 1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <Button
         android:id="@+id/sunsetSeasonTheme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="74dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="481dp"
+        android:layout_width="120dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="20dp"
         android:onClick="setTheme1"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Theme 2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <Button
         android:id="@+id/punisherTheme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="21dp"
-        android:layout_marginBottom="415dp"
+        android:layout_width="120dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="80dp"
         android:onClick="setTheme2"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Theme 3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/evermoreTheme" />
 
     <Button
         android:id="@+id/multiplyTheme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
-        android:layout_marginEnd="62dp"
-        android:layout_marginBottom="414dp"
+        android:layout_width="120dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="20dp"
         android:onClick="setTheme3"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Theme 4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sunsetSeasonTheme" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="83dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="84dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Theme Selector"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

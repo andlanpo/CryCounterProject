@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         TextView cryCount = findViewById(R.id.cryCount);
-        cryCount.setText("You Have Cried " + profile.getCries().size() + " Times");
+        cryCount.setText("Cry Count:\n  " + profile.getCries().size() + " Cries");
 
 
     }

@@ -56,25 +56,25 @@ public class Leaderboard extends AppCompatActivity {
         leaderboardObjectArrayList = dbHelper.getLeaderboardObjects();
         leaderboardObjectArrayList = merge(leaderboardObjectArrayList);
         TextView text1 = findViewById(R.id.textView5);
-        text1.setText("1 " + leaderboardObjectArrayList.get(0).toString());
+        text1.setText("1\t" + leaderboardObjectArrayList.get(0).toString());
         TextView text2 = findViewById(R.id.textView7);
-        text2.setText("2 " + leaderboardObjectArrayList.get(1).toString());
+        text2.setText("2\t" + leaderboardObjectArrayList.get(1).toString());
         TextView text3 = findViewById(R.id.textView8);
-        text3.setText("3 " + leaderboardObjectArrayList.get(2).toString());
+        text3.setText("3\t" + leaderboardObjectArrayList.get(2).toString());
         TextView text4 = findViewById(R.id.textView9);
-        text4.setText("4 " + leaderboardObjectArrayList.get(3).toString());
+        text4.setText("4\t" + leaderboardObjectArrayList.get(3).toString());
         TextView text5 = findViewById(R.id.textView6);
-        text5.setText("5 " + leaderboardObjectArrayList.get(4).toString());
+        text5.setText("5\t" + leaderboardObjectArrayList.get(4).toString());
         TextView text6 = findViewById(R.id.textView10);
-        text6.setText("6 " + leaderboardObjectArrayList.get(5).toString());
+        text6.setText("6\t" + leaderboardObjectArrayList.get(5).toString());
         TextView text7 = findViewById(R.id.textView11);
-        text7.setText("7 " + leaderboardObjectArrayList.get(6).toString());
+        text7.setText("7\t" + leaderboardObjectArrayList.get(6).toString());
         TextView text8 = findViewById(R.id.textView12);
-        text8.setText("8 " + leaderboardObjectArrayList.get(7).toString());
+        text8.setText("8\t" + leaderboardObjectArrayList.get(7).toString());
         TextView text9 = findViewById(R.id.textView13);
-        text9.setText("9 " + leaderboardObjectArrayList.get(8).toString());
+        text9.setText("9\t" + leaderboardObjectArrayList.get(8).toString());
         TextView text10 = findViewById(R.id.textView14);
-        text10.setText("10 " + leaderboardObjectArrayList.get(9).toString());
+        text10.setText("10\t" + leaderboardObjectArrayList.get(9).toString());
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

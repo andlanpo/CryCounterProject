@@ -10,8 +10,8 @@
 
     <Button
         android:id="@+id/leaderboard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="124dp"
         android:onClick="goToLeader"
@@ -21,8 +21,8 @@
 
     <Button
         android:id="@+id/statistics"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
         android:layout_marginStart="32dp"
         android:layout_marginBottom="124dp"
         android:onClick="goToStats"
@@ -32,12 +32,11 @@
 
     <Button
         android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
         android:layout_marginStart="147dp"
         android:layout_marginTop="208dp"
         android:layout_marginEnd="147dp"
-        android:background="@drawable/circle"
         android:onClick="logCry"
         android:text="Log Cry"
         app:layout_constraintEnd_toEndOf="parent"
@@ -65,6 +64,7 @@
         android:layout_marginStart="167dp"
         android:layout_marginTop="46dp"
         android:layout_marginEnd="167dp"
+        android:fontFamily="sans-serif-black"
         android:text="TextView"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"

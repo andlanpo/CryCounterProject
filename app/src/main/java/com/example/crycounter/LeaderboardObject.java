@@ -36,6 +36,6 @@ public class LeaderboardObject {
     }
 
     public String toString(){
-        return firstName + " " + lastName + " " + cryCount + " cries";
+        return firstName + " " + lastName + " " + cryCount + " Cries";
     }
 }
