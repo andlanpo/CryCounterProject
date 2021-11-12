@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.util.Pair;
 import android.view.View;
 import android.widget.TextView;
@@ -177,14 +180,18 @@ public class Statistics extends AppCompatActivity {
         entryList.add(new Entry(12, dec));
 
 
-        LineDataSet lineDataSet = new LineDataSet(entryList, "Months");
+        LineDataSet lineDataSet = new LineDataSet(entryList, "");
         lineDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
         lineDataSet.setFillAlpha(110);
+        lineDataSet.setValueTextColor(Color.WHITE);
         lineData = new LineData(lineDataSet);
         lineChart.setData(lineData);
-        lineChart.getDescription().setText("Your Cry Data");
         lineChart.animateY(1500);
         lineChart.setVisibleXRangeMaximum(10);
+        lineChart.getXAxis().setTextColor(Color.WHITE);
+        lineChart.getAxisLeft().setTextColor(Color.WHITE);
+        lineChart.getAxisRight().setTextColor(Color.WHITE);
+        lineChart.getDescription().setText("");
         lineChart.invalidate();
 
         //https://learntodroid.com/how-to-display-a-line-chart-in-your-android-app/
@@ -256,7 +263,7 @@ public class Statistics extends AppCompatActivity {
         for(int i = 0; i < listStressors.size(); i++){
             barEntries.add(new BarEntry(i, listStressors.get(i).getStressorAmount())); //Had the parameters switched https://www.youtube.com/watch?v=sXo2SkX7rGk
         }
-        barDataSet = new BarDataSet(barEntries, "Stressors");
+        barDataSet = new BarDataSet(barEntries, "");
         barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
         barDataSet.setValueTextColor(Color.WHITE);
         barDataSet.setValueTextSize(16f);
@@ -280,11 +287,14 @@ public class Statistics extends AppCompatActivity {
         xAxisStressor.setDrawGridLines(false);
         xAxisStressor.setGranularity(1f);
         xAxisStressor.setLabelCount(barStressorX.size());
+        xAxisStressor.setTextColor(Color.WHITE);
         xAxisStressor.setLabelRotationAngle(270);
         xAxisStressor.setAxisLineColor(300);
         barChart.animateY(1500);
+        barChart.getAxisLeft().setTextColor(Color.WHITE);
+        barChart.getAxisRight().setTextColor(Color.WHITE);
+        barChart.getDescription().setText("");
         barChart.setTouchEnabled(true);
-        barChart.getDescription().setText("Your Stressor Data");
 
 
         //Locations bar chart
@@ -323,7 +333,7 @@ public class Statistics extends AppCompatActivity {
         for(int i = 0; i < listLocations.size(); i++){
             barEntriesLocations.add(new BarEntry(i,listLocations.get(i).getStressorAmount()));
         }
-        barDataSetLocation = new BarDataSet(barEntriesLocations, "Locations");
+        barDataSetLocation = new BarDataSet(barEntriesLocations, "");
         barDataSetLocation.setColors(ColorTemplate.MATERIAL_COLORS);
         barDataSetLocation.setValueTextColor(Color.WHITE);
         barDataSetLocation.setValueTextSize(16f);
@@ -341,12 +351,15 @@ public class Statistics extends AppCompatActivity {
         xAxisLocation.setDrawGridLines(false);
         xAxisLocation.setGranularity(1f);
         xAxisLocation.setLabelCount(barLocationX.size());
+        xAxisLocation.setTextColor(Color.WHITE);
         xAxisLocation.setLabelRotationAngle(270);
         barChartLocation.setTouchEnabled(true);
         barChartLocation.animateY(1500);
-        barChartLocation.getDescription().setText("Your Location Data");
         barChartLocation.getAxisLeft().setAxisMinimum(0);
         barChartLocation.getAxisRight().setAxisMinimum(0);
+        barChartLocation.getAxisLeft().setTextColor(Color.WHITE);
+        barChartLocation.getAxisRight().setTextColor(Color.WHITE);
+        barChartLocation.getDescription().setText("");
         mostLikelyToHour();
         mostLikelyToDay();
         mostLikelyToLocation();
