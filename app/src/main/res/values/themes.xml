@@ -41,6 +41,7 @@
         <item name="android:colorBackground">@color/sunset_background</item>
         <item name = "colorOnBackground">@color/sunset_button</item>
         <item name="colorPrimary">@color/sunset_button</item>
+        <item name= "backgroundTint">@color/white</item>
         <item name="android:itemBackground">@color/sunset_button</item>
         <item name ="android:indeterminateTint">@color/sunset_button</item>
         <item name = "buttonTint">@color/sunset_button</item>
