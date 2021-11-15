@@ -21,7 +21,17 @@ public class Profile implements Parcelable{
     private ArrayList<Cry> cries;
     private String UID;
     private int theme;
+    public static final Creator<Profile> CREATOR = new Creator<Profile>() {
+        @Override
+        public Profile createFromParcel(Parcel source) {
+            return new Profile(source);
+        }
 
+        @Override
+        public Profile[] newArray(int size) {
+            return new Profile[size];
+        }
+    };
 
     @Override
     public int describeContents() {
@@ -99,18 +109,6 @@ public class Profile implements Parcelable{
         this.UID = uid;
         theme = 0;
     }
-
-    public static final Creator<Profile> CREATOR = new Creator<Profile>() {
-        @Override
-        public Profile createFromParcel(Parcel source) {
-            return new Profile(source);
-        }
-
-        @Override
-        public Profile[] newArray(int size) {
-            return new Profile[size];
-        }
-    };
 
     public boolean isMoreOrLess() {
         return moreOrLess;
