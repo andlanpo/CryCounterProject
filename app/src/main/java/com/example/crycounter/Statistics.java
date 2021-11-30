@@ -333,10 +333,10 @@ public class Statistics extends AppCompatActivity {
         }
         TextView text4 = findViewById(R.id.likelyHour);
         if(hour > 12){
-            text4.setText("The time you cry the most is: \n " + hour + "PM");
+            text4.setText("The time you cry the most is: \n" + hour + "PM\n");
         }
         else{
-            text4.setText("The time you cry the most is: \n " + hour + "AM");
+            text4.setText("The time you cry the most is: \n" + hour + "AM\n");
         }
 
     }
@@ -366,7 +366,7 @@ public class Statistics extends AppCompatActivity {
             index++;
         }
         TextView text5 = findViewById(R.id.likelyDay);
-        text5.setText("Your biggest stressor is: \n" + stressor);
+        text5.setText("Your biggest stressor is: \n" + stressor + "\n");
 
     }
 
@@ -395,7 +395,7 @@ public class Statistics extends AppCompatActivity {
             index++;
         }
         TextView text6 = findViewById(R.id.likelyLocation);
-        text6.setText("You cry the most at: \n" + location);
+        text6.setText("You cry the most at: \n" + location+ "\n");
 
     }
 
