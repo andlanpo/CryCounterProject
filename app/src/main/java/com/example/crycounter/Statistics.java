@@ -86,34 +86,10 @@ public class Statistics extends AppCompatActivity {
         TextView text4 = findViewById(R.id.likelyHour);
         TextView text5 = findViewById(R.id.likelyDay);
         TextView text6 = findViewById(R.id.likelyLocation);
-       // if(current.getTheme() == 0){                  I used shared preferences at the top of this instead of current.getTheme(),
-                                                        //so you can take this out if you want
-           // setTheme(R.style.Evermore);
-//            text4.setTextColor(Color.parseColor("#ffffff"));
-//            text5.setTextColor(Color.parseColor("#ffffff"));
-//            text6.setTextColor(Color.parseColor("#ffffff"));
-    //    }
-       // else if(current.getTheme() == 1){
-           // setTheme(R.style.SunsetSeason);
-//            text4.setTextColor(Color.parseColor("#ffffff"));
-//            text5.setTextColor(Color.parseColor("#ffffff"));
-//            text6.setTextColor(Color.parseColor("#ffffff"));
-      //  }
-        //else if(current.getTheme() == 2){
-           // setTheme(R.style.Punisher);
-//            text4.setTextColor(Color.parseColor("#ffffff"));
-//            text5.setTextColor(Color.parseColor("#ffffff"));
-//            text6.setTextColor(Color.parseColor("#ffffff"));
-     //   }
-       // else if(current.getTheme() == 3){
-           // setTheme(R.style.Multiply);
-//            text4.setTextColor(Color.parseColor("#ffffff"));
-//            text5.setTextColor(Color.parseColor("#ffffff"));
-//            text6.setTextColor(Color.parseColor("#ffffff"));
-        //}
+
         setContentView(R.layout.activity_statistics);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //barStressorValues = new ArrayList<Integer>();
+
 
         //Line chart
         ArrayList<Integer> months = new ArrayList<Integer>();
@@ -205,26 +181,6 @@ public class Statistics extends AppCompatActivity {
         barEntries = new ArrayList<BarEntry>();
         //Initializes the bar chart
         barChart = (BarChart) findViewById(R.id.barChart);
-          //Creates aan arraylist to hold all of the stressor names
-//       ArrayList<String> barStressorNames = new ArrayList<String>();
-//          //Adds stressor names from Firebase to arraylist
-//      for (int i = 0; i < cries.size(); i++) {
-//           barStressorNames.add(cries.get(i).getStressor());
-//        }
-//      Collections.sort(barStressorNames); //https://beginnersbook.com/2013/12/how-to-sort-arraylist-in-java/
-
-//        int numStressor = 1;
-//        String stressor = "";
-//        for (int i = 0; i < barStressorNames.size()-1; i++){
-//            if(barStressorNames.get(i).equals(barStressorNames.get(i+1))){
-//                numStressor++;
-//            }
-//            else{
-//                barStressorValues.add(numStressor);
-//                numStressor = 1;
-//                barStressorX.add(cries.get(i).getStressor());
-//            }
-//        }
 
         int notInList = 0;
         ArrayList<BarGraphStressor> listStressors = new ArrayList<BarGraphStressor>();
@@ -249,16 +205,6 @@ public class Statistics extends AppCompatActivity {
                 listStressors.add(new BarGraphStressor(current.getCries().get(i).getStressor(), 1));
             }
         }
-//        for(int i = 0; i < current.getStressors().size(); i++){
-//            for(int j = 0; j < barStressorNames.size(); j++){
-//                if(current.getStressors().get(i).equals(barStressorNames.get(j))){
-//                    numStressor++;
-//                }
-//            }
-//            //BarGraphStressor displayStressor = new BarGraphStressor(current.getStressors().get(i), numStressor);
-//            listStressors.add(new BarGraphStressor(current.getStressors().get(i), numStressor));
-//            numStressor = 0;
-//        }
 
         for(int i = 0; i < listStressors.size(); i++){
             barEntries.add(new BarEntry(i, listStressors.get(i).getStressorAmount())); //Had the parameters switched https://www.youtube.com/watch?v=sXo2SkX7rGk
@@ -271,12 +217,7 @@ public class Statistics extends AppCompatActivity {
         for(int i =0; i < listStressors.size(); i++){
             barStressorX.add(listStressors.get(i).getStressorName());
         }
-//        int count = 0;
-//        String stressorName = "";
-//        int index = 0;
-//        while(index < barStressorNames.size()){
-//
-//        }
+
         barData = new BarData(barDataSet); //https://www.youtube.com/watch?v=vhKtbECeazQ&t=750s
         barChart.setFitBars(true);
         barChart.setData(barData);
